@@ -111,11 +111,11 @@ function App() {
   const [appSettings, setAppSettings] = useState<AppSettings | null>(null);
   const [jsonUrl, setJsonUrl] = useState(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("quiz") || "/default_questions.json";
+    return urlParams.get("quiz") || `${import.meta.env.BASE_URL}default_questions.json`;
   });
 
   useEffect(() => {
-    fetch("/settings.json")
+    fetch(`${import.meta.env.BASE_URL}settings.json`)
       .then((res) => res.json())
       .then((data) => setAppSettings(data))
       .catch((err) => console.error("Failed to load settings.json", err));
@@ -157,7 +157,7 @@ function App() {
         <p className="text-center">{error}</p>
         <button
           className="btn btn-primary"
-          onClick={() => (window.location.href = "/")}
+          onClick={() => (window.location.href = import.meta.env.BASE_URL)}
         >
           Retry Default
         </button>
