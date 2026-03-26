@@ -1,7 +1,7 @@
 {
   "settings": {
     "cashBuilderMaxQuestions": 50,
-    "cashBuilderTimeSeconds": 300,
+    "cashBuilderTimeSeconds": 180,
     "chaseTimePerQuestionSeconds": 30,
     "partyMode": true,
     "chaserAccuracyPercentage": 80,
