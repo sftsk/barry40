@@ -1,0 +1,306 @@
+{
+  "settings": {
+    "cashBuilderTimeSeconds": 60,
+    "chaseTimePerQuestionSeconds": 15,
+    "partyMode": false,
+    "chaserAccuracyPercentage": 80
+  },
+  "cashBuilder": [
+    {
+      "question": "Wie heißt das berühmteste Radrennen der Welt, das jährlich in Frankreich stattfindet?",
+      "answer": "Tour de France"
+    },
+    {
+      "question": "Aus welchem Land stammt die Kaffeepflanze ursprünglich?",
+      "answer": "Äthiopien"
+    },
+    {
+      "question": "Wie heißt die bekannteste Karte in Counter-Strike?",
+      "answer": "Dust2"
+    },
+    {
+      "question": "In welchem Jahr fiel die Berliner Mauer?",
+      "answer": "1989"
+    },
+    {
+      "question": "Wie lautet das chemische Symbol für Sauerstoff?",
+      "answer": "O"
+    },
+    {
+      "question": "Welches Organ im menschlichen Körper produziert Insulin?",
+      "answer": "Die Bauchspeicheldrüse"
+    },
+    {
+      "question": "Wie heißt der größte Hafen Europas, der in Rotterdam liegt?",
+      "answer": "Europoort"
+    },
+    {
+      "question": "Welcher österreichische Bundeskanzler wurde 1970 erstmals gewählt?",
+      "answer": "Bruno Kreisky"
+    },
+    {
+      "question": "In welchem Videospiel von 1996 sammelt man Bananen auf einer Insel?",
+      "answer": "Donkey Kong Country"
+    },
+    {
+      "question": "Wer führte Regie beim Film '2001: Odyssee im Weltraum'?",
+      "answer": "Stanley Kubrick"
+    },
+    {
+      "question": "Was misst die Blende bei einer Kamera?",
+      "answer": "Die Lichtmenge bzw. Öffnungsweite des Objektivs"
+    },
+    {
+      "question": "Wie heißt die Technik beim Radfahren, bei der man im Windschatten fährt?",
+      "answer": "Drafting"
+    },
+    {
+      "question": "Welche Kaffeezubereitungsart presst heißes Wasser mit Druck durch feines Kaffeepulver?",
+      "answer": "Espresso"
+    },
+    {
+      "question": "Wie viele Spieler hat ein Team in einem klassischen Counter-Strike-Match?",
+      "answer": "Fünf"
+    },
+    {
+      "question": "Welcher Vertrag gründete 1957 die Europäische Wirtschaftsgemeinschaft?",
+      "answer": "Die Römischen Verträge"
+    },
+    {
+      "question": "Wie heißt das Molekül, das die genetische Information in Zellen speichert?",
+      "answer": "DNA (Desoxyribonukleinsäure)"
+    },
+    {
+      "question": "Was ist der Hippokratische Eid?",
+      "answer": "Ein ärztliches Gelöbnis ethischen Handelns"
+    },
+    {
+      "question": "Welche berühmte Brücke ist ein Wahrzeichen von Rotterdam?",
+      "answer": "Die Erasmusbrücke"
+    },
+    {
+      "question": "Welche österreichische Partei trägt die Farbe Türkis?",
+      "answer": "Die ÖVP"
+    },
+    {
+      "question": "Wie hieß der blaue Igel, der 1991 sein erstes Videospiel bekam?",
+      "answer": "Sonic the Hedgehog"
+    },
+    {
+      "question": "In welchem Kubrick-Film spielt Jack Nicholson einen Autor, der in einem Hotel den Verstand verliert?",
+      "answer": "Shining"
+    },
+    {
+      "question": "Was bedeutet die Abkürzung ISO in der Fotografie?",
+      "answer": "Die Lichtempfindlichkeit des Sensors bzw. Films"
+    },
+    {
+      "question": "Was versteht man in der Videobearbeitung unter einem 'Jump Cut'?",
+      "answer": "Ein harter Schnitt innerhalb derselben Einstellung"
+    },
+    {
+      "question": "Wie heißt das härteste Radrennen der Welt, das über Kopfsteinpflaster führt?",
+      "answer": "Paris–Roubaix"
+    },
+    {
+      "question": "Welches Land ist der größte Kaffeeproduzent der Welt?",
+      "answer": "Brasilien"
+    },
+    {
+      "question": "In welchem Jahr endete der Erste Weltkrieg?",
+      "answer": "1918"
+    },
+    {
+      "question": "Wie viele Chromosomenpaare hat ein gesunder Mensch?",
+      "answer": "23"
+    },
+    {
+      "question": "Was versteht man unter 'Color Grading' in der Videobearbeitung?",
+      "answer": "Die nachträgliche Farbkorrektur und Farbgestaltung"
+    }
+  ],
+  "theChase": [
+    {
+      "question": "Wie heißt die höchste Bergkategorie bei der Tour de France?",
+      "options": ["Hors Catégorie", "Kategorie 1", "Kategorie Spéciale"],
+      "correct": "Hors Catégorie"
+    },
+    {
+      "question": "Welche Kaffeesorte gilt als hochwertiger: Arabica oder Robusta?",
+      "options": ["Robusta", "Arabica", "Es gibt keinen Unterschied"],
+      "correct": "Arabica"
+    },
+    {
+      "question": "In welchem Jahr wurde die erste Version von Counter-Strike veröffentlicht?",
+      "options": ["1997", "1999", "2001"],
+      "correct": "1999"
+    },
+    {
+      "question": "Welcher europäische Herrscher wurde auf der Insel Elba verbannt?",
+      "options": ["Ludwig XVI.", "Napoleon Bonaparte", "Kaiser Wilhelm II."],
+      "correct": "Napoleon Bonaparte"
+    },
+    {
+      "question": "Was beschreibt das Wort 'Mitose' in der Biologie?",
+      "options": ["Zellteilung", "Zellatmung", "Proteinbiosynthese"],
+      "correct": "Zellteilung"
+    },
+    {
+      "question": "Welches Vitamin wird auch als Ascorbinsäure bezeichnet?",
+      "options": ["Vitamin A", "Vitamin C", "Vitamin D"],
+      "correct": "Vitamin C"
+    },
+    {
+      "question": "In welcher niederländischen Provinz liegt Rotterdam?",
+      "options": ["Nordholland", "Südholland", "Utrecht"],
+      "correct": "Südholland"
+    },
+    {
+      "question": "Wer war der erste Bundespräsident der Republik Österreich nach 1945?",
+      "options": ["Karl Renner", "Theodor Körner", "Adolf Schärf"],
+      "correct": "Karl Renner"
+    },
+    {
+      "question": "Welches Spiel von 1993 gilt als Meilenstein des Ego-Shooter-Genres?",
+      "options": ["Quake", "Doom", "Wolfenstein 3D"],
+      "correct": "Doom"
+    },
+    {
+      "question": "Welcher Stanley-Kubrick-Film handelt vom Vietnamkrieg?",
+      "options": ["Apocalypse Now", "Full Metal Jacket", "Platoon"],
+      "correct": "Full Metal Jacket"
+    },
+    {
+      "question": "Was beschreibt der Begriff 'Bokeh' in der Fotografie?",
+      "options": [
+        "Bildstabilisierung",
+        "Ästhetische Unschärfe im Hintergrund",
+        "Überbelichtung"
+      ],
+      "correct": "Ästhetische Unschärfe im Hintergrund"
+    },
+    {
+      "question": "Welches Videoformat steht für 'Frames per Second'?",
+      "options": ["FPS", "FHD", "FLC"],
+      "correct": "FPS"
+    },
+    {
+      "question": "Wie heißt der jährliche Radklassiker, der durch Flandern führt?",
+      "options": [
+        "Lüttich–Bastogne–Lüttich",
+        "Ronde van Vlaanderen",
+        "Mailand–Sanremo"
+      ],
+      "correct": "Ronde van Vlaanderen"
+    },
+    {
+      "question": "Was versteht man unter 'Cupping' beim Kaffee?",
+      "options": [
+        "Eine Röstmethode",
+        "Eine professionelle Verkostungsmethode",
+        "Eine Brühtechnik"
+      ],
+      "correct": "Eine professionelle Verkostungsmethode"
+    },
+    {
+      "question": "Welches Counter-Strike-Team gewann das erste Major-Turnier 2013 in Jönköping?",
+      "options": ["NiP", "Fnatic", "Virtus.pro"],
+      "correct": "Fnatic"
+    },
+    {
+      "question": "In welcher Stadt wurde 1648 der Westfälische Frieden geschlossen?",
+      "options": ["Münster und Osnabrück", "Wien", "Prag"],
+      "correct": "Münster und Osnabrück"
+    },
+    {
+      "question": "Welches Teilchen im Atom trägt eine negative elektrische Ladung?",
+      "options": ["Proton", "Neutron", "Elektron"],
+      "correct": "Elektron"
+    },
+    {
+      "question": "Was ist ein Stethoskop?",
+      "options": [
+        "Ein Gerät zur Blutdruckmessung",
+        "Ein Abhörgerät für Herz- und Lungengeräusche",
+        "Ein Instrument zur Augenuntersuchung"
+      ],
+      "correct": "Ein Abhörgerät für Herz- und Lungengeräusche"
+    },
+    {
+      "question": "Welcher berühmte niederländische Gelehrte ist Namensgeber der Erasmusbrücke in Rotterdam?",
+      "options": ["Baruch Spinoza", "Erasmus von Rotterdam", "Hugo Grotius"],
+      "correct": "Erasmus von Rotterdam"
+    },
+    {
+      "question": "Welche österreichische Partei wurde 2012 von Frank Stronach gegründet?",
+      "options": ["NEOS", "Team Stronach", "BZÖ"],
+      "correct": "Team Stronach"
+    },
+    {
+      "question": "In welchem 90er-Jahre-Spiel kämpft ein Söldner namens Cloud Strife?",
+      "options": ["Final Fantasy VI", "Final Fantasy VII", "Chrono Trigger"],
+      "correct": "Final Fantasy VII"
+    },
+    {
+      "question": "Welcher Kubrick-Film basiert auf einem Roman von Anthony Burgess?",
+      "options": ["Eyes Wide Shut", "A Clockwork Orange", "Barry Lyndon"],
+      "correct": "A Clockwork Orange"
+    },
+    {
+      "question": "Was beschreibt die 'Drittel-Regel' in der Fotografie?",
+      "options": [
+        "Eine Regel für Belichtungszeit",
+        "Eine Bildkompositionsregel",
+        "Eine Regel für Weißabgleich"
+      ],
+      "correct": "Eine Bildkompositionsregel"
+    },
+    {
+      "question": "Was ist ein 'Keyframe' in der Videobearbeitung?",
+      "options": [
+        "Ein gesperrtes Bild",
+        "Ein Schlüsselbild für Animationsänderungen",
+        "Ein Übergangseffekt"
+      ],
+      "correct": "Ein Schlüsselbild für Animationsänderungen"
+    },
+    {
+      "question": "Welches Schaltwerk gilt bei Rennrädern als Spitzengruppe von Shimano?",
+      "options": ["Ultegra", "105", "Dura-Ace"],
+      "correct": "Dura-Ace"
+    },
+    {
+      "question": "Was versteht man beim Kaffee unter 'Single Origin'?",
+      "options": [
+        "Kaffee aus einer einzigen Anbauregion",
+        "Kaffee aus einer einzelnen Bohne",
+        "Kaffee ohne Milch"
+      ],
+      "correct": "Kaffee aus einer einzigen Anbauregion"
+    },
+    {
+      "question": "Welches Organ ist das größte innere Organ des menschlichen Körpers?",
+      "options": ["Das Herz", "Die Lunge", "Die Leber"],
+      "correct": "Die Leber"
+    },
+    {
+      "question": "In welchem Jahr wurde der Vertrag von Versailles unterzeichnet?",
+      "options": ["1918", "1919", "1920"],
+      "correct": "1919"
+    },
+    {
+      "question": "Wie hieß der berühmte Markthallen-Komplex in Rotterdam, der 2014 eröffnet wurde?",
+      "options": ["De Markthal", "Blaak Bazaar", "Koopgoot Halle"],
+      "correct": "De Markthal"
+    },
+    {
+      "question": "Welches Nintendo-Spiel von 1998 wird oft als bestes Videospiel aller Zeiten bezeichnet?",
+      "options": [
+        "Super Mario 64",
+        "The Legend of Zelda: Ocarina of Time",
+        "GoldenEye 007"
+      ],
+      "correct": "The Legend of Zelda: Ocarina of Time"
+    }
+  ]
+}

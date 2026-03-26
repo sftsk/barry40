@@ -1,8 +1,19 @@
+export interface AppSettings {
+  defaultCashBuilderTimeSeconds: number;
+  defaultChaseTimePerQuestionSeconds: number;
+  defaultPartyMode: boolean;
+  defaultChaserAccuracyPercentage: number;
+  defaultCashPerCorrectAnswer: number;
+  defaultChaserRoundLength: number;
+}
+
 export interface GameSettings {
   cashBuilderTimeSeconds: number;
   chaseTimePerQuestionSeconds: number;
   partyMode: boolean;
   chaserAccuracyPercentage: number;
+  cashPerCorrectAnswer?: number;
+  chaserRoundLength?: number;
 }
 
 export interface CashBuilderQuestion {
@@ -30,4 +41,5 @@ export interface GameState {
   config: GameConfig | null;
   playerPos: number; // For the chase (distance to home)
   chaserPos: number; // Distance to home (0 is caught)
+  activeAccuracy?: number;
 }
