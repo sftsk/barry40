@@ -1,0 +1,316 @@
+{
+  "cashBuilder": [
+    {
+      "question": "Welcher Radprofi wurde als 'Der Kannibale' bezeichnet?",
+      "answer": "Eddy Merckx"
+    },
+    {
+      "question": "Aus welcher Frucht wird Guacamole hauptsächlich hergestellt?",
+      "answer": "Avocado"
+    },
+    {
+      "question": "Wie heißt die Terroristen-Fraktion auf der Counter-Strike-Map Dust2?",
+      "answer": "Elite Crew"
+    },
+    {
+      "question": "Welches Land produziert weltweit den meisten Kaffee?",
+      "answer": "Brasilien"
+    },
+    {
+      "question": "In welchem Jahr begann der Dreißigjährige Krieg?",
+      "answer": "1618"
+    },
+    {
+      "question": "Wie heißt das Hormon, das den Blutzuckerspiegel senkt?",
+      "answer": "Insulin"
+    },
+    {
+      "question": "Welches 90er-Videospiel beginnt mit den Worten 'War. War never changes.'?",
+      "answer": "Fallout"
+    },
+    {
+      "question": "Welcher österreichische Bundeskanzler war der Hauptakteur im Ibiza-Skandal 2019?",
+      "answer": "Heinz-Christian Strache (als Vizekanzler)"
+    },
+    {
+      "question": "Aus welchem Land stammt das Gericht Pad Thai?",
+      "answer": "Thailand"
+    },
+    {
+      "question": "Wie viele Spieler stehen bei einem kompetitiven Counter-Strike-Match pro Team?",
+      "answer": "Fünf"
+    },
+    {
+      "question": "Wer führte Regie bei 'A Clockwork Orange'?",
+      "answer": "Stanley Kubrick"
+    },
+    {
+      "question": "Wie heißt die goldbraune Schaumschicht auf einem Espresso?",
+      "answer": "Crema"
+    },
+    {
+      "question": "Was misst die Blende an einer Kamera?",
+      "answer": "Die Lichtmenge, die durch das Objektiv fällt"
+    },
+    {
+      "question": "Wie heißt das berühmteste Eintagesrennen über Kopfsteinpflaster in Nordfrankreich?",
+      "answer": "Paris–Roubaix"
+    },
+    {
+      "question": "Welches Gas macht etwa 78 Prozent der Erdatmosphäre aus?",
+      "answer": "Stickstoff"
+    },
+    {
+      "question": "Was versteht man beim Kaffee unter 'Single Origin'?",
+      "answer": "Kaffee aus einer einzigen Anbauregion"
+    },
+    {
+      "question": "In welchem 90er-Spiel sammelt ein Bandicoot Äpfel und Kisten?",
+      "answer": "Crash Bandicoot"
+    },
+    {
+      "question": "Welches alkoholische Getränk wird aus Agaven hergestellt?",
+      "answer": "Tequila"
+    },
+    {
+      "question": "Was beschreibt der biologische Begriff 'Photosynthese'?",
+      "answer": "Die Umwandlung von Licht in chemische Energie durch Pflanzen"
+    },
+    {
+      "question": "Welcher Kubrick-Film zeigt Jack Nicholson in einem abgelegenen Hotel im Winter?",
+      "answer": "Shining"
+    },
+    {
+      "question": "Wie heißt die österreichische Partei, die die Farbe Türkis trägt?",
+      "answer": "ÖVP"
+    },
+    {
+      "question": "Wie heißt der Rotterdamer Fußballverein, der im Stadion De Kuip spielt?",
+      "answer": "Feyenoord"
+    },
+    {
+      "question": "Was beschreibt in Counter-Strike der Begriff 'Eco-Runde'?",
+      "answer": "Eine Sparrunde, in der das Team wenig oder kein Geld ausgibt"
+    },
+    {
+      "question": "Welcher Cocktail besteht klassisch aus Wodka, Tomatensaft und Gewürzen?",
+      "answer": "Bloody Mary"
+    },
+    {
+      "question": "Welcher Planet unseres Sonnensystems hat die meisten bekannten Monde?",
+      "answer": "Saturn"
+    },
+    {
+      "question": "In welchem 90er-Jahre-Spiel baut und verwaltet man einen Vergnügungspark?",
+      "answer": "RollerCoaster Tycoon"
+    },
+    {
+      "question": "Welche italienische Kaffeezubereitung heißt übersetzt 'beschmutzt' oder 'befleckt'?",
+      "answer": "Caffè Macchiato"
+    }
+  ],
+  "theChase": [
+    {
+      "question": "Welcher Radrennfahrer gewann zwischen 1991 und 1995 fünfmal in Folge die Tour de France?",
+      "options": ["Bernard Hinault", "Miguel Indurain", "Jan Ullrich"],
+      "correct": "Miguel Indurain"
+    },
+    {
+      "question": "Aus welchem Land stammt die Spirituose Pisco?",
+      "options": ["Mexiko", "Peru", "Argentinien"],
+      "correct": "Peru"
+    },
+    {
+      "question": "Welches Counter-Strike-Team gewann das erste CS:GO-Major 2013 in Jönköping?",
+      "options": ["Ninjas in Pyjamas", "Fnatic", "Virtus.pro"],
+      "correct": "Fnatic"
+    },
+    {
+      "question": "Welche Kaffeezubereitungsmethode wurde in Japan populär und nutzt einen langsamen Kaltwasser-Tropfprozess über viele Stunden?",
+      "options": ["Pour Over", "Cold Drip (Kyoto-Style)", "Siphon"],
+      "correct": "Cold Drip (Kyoto-Style)"
+    },
+    {
+      "question": "Welcher Vertrag gründete 1957 die Europäische Wirtschaftsgemeinschaft?",
+      "options": [
+        "Vertrag von Maastricht",
+        "Römische Verträge",
+        "Vertrag von Lissabon"
+      ],
+      "correct": "Römische Verträge"
+    },
+    {
+      "question": "Was beschreibt der biologische Begriff 'Apoptose'?",
+      "options": [
+        "Unkontrolliertes Zellwachstum",
+        "Programmierter Zelltod",
+        "Zellfusion"
+      ],
+      "correct": "Programmierter Zelltod"
+    },
+    {
+      "question": "Welches klassische Gericht aus Valencia enthält traditionell Kaninchen und Schnecken?",
+      "options": ["Gazpacho", "Paella Valenciana", "Fabada Asturiana"],
+      "correct": "Paella Valenciana"
+    },
+    {
+      "question": "Welcher österreichische Bundeskanzler wurde 2017 mit 31 Jahren jüngster Regierungschef Europas?",
+      "options": ["Werner Faymann", "Sebastian Kurz", "Christian Kern"],
+      "correct": "Sebastian Kurz"
+    },
+    {
+      "question": "In welchem 90er-Jahre-Spiel verwaltet man ein Krankenhaus und behandelt fiktive Krankheiten?",
+      "options": ["SimCity 2000", "Theme Hospital", "Settlers II"],
+      "correct": "Theme Hospital"
+    },
+    {
+      "question": "Welche Counter-Strike-Map spielt in einer marokkanisch anmutenden Umgebung und wurde 2024 als Remake neu eingeführt?",
+      "options": ["Mirage", "Dust2", "Anubis"],
+      "correct": "Dust2"
+    },
+    {
+      "question": "In welchem Kubrick-Film spielen reale Schauspieler neben einem berühmten sprechenden Computer namens HAL 9000?",
+      "options": [
+        "A Clockwork Orange",
+        "2001: Odyssee im Weltraum",
+        "Full Metal Jacket"
+      ],
+      "correct": "2001: Odyssee im Weltraum"
+    },
+    {
+      "question": "Was beschreibt der fotografische Begriff 'Bokeh'?",
+      "options": [
+        "Bildstabilisierung",
+        "Die ästhetische Qualität der Unschärfe im Hintergrund",
+        "Überbelichtung"
+      ],
+      "correct": "Die ästhetische Qualität der Unschärfe im Hintergrund"
+    },
+    {
+      "question": "Aus welchem Land stammt der Käse Gruyère?",
+      "options": ["Frankreich", "Schweiz", "Österreich"],
+      "correct": "Schweiz"
+    },
+    {
+      "question": "Was beschreibt in Counter-Strike ein 'Clutch'?",
+      "options": [
+        "Einen taktischen Rückzug",
+        "Das Gewinnen einer Runde als letzter überlebender Spieler",
+        "Einen Headshot aus großer Entfernung"
+      ],
+      "correct": "Das Gewinnen einer Runde als letzter überlebender Spieler"
+    },
+    {
+      "question": "Welche Kraft hält die Quarks in Protonen und Neutronen zusammen?",
+      "options": [
+        "Elektromagnetische Kraft",
+        "Starke Kernkraft",
+        "Gravitation"
+      ],
+      "correct": "Starke Kernkraft"
+    },
+    {
+      "question": "Was ist der Hauptbestandteil des japanischen Getränks Sake?",
+      "options": ["Gerste", "Reis", "Weizen"],
+      "correct": "Reis"
+    },
+    {
+      "question": "Welcher belgische Radklassiker wird auch 'De Ronde' genannt?",
+      "options": [
+        "Lüttich–Bastogne–Lüttich",
+        "Flandern-Rundfahrt",
+        "Gent–Wevelgem"
+      ],
+      "correct": "Flandern-Rundfahrt"
+    },
+    {
+      "question": "Was misst ein Refraktometer bei der Kaffeezubereitung?",
+      "options": [
+        "Die Wassertemperatur",
+        "Die Konzentration gelöster Stoffe",
+        "Den Mahlgrad"
+      ],
+      "correct": "Die Konzentration gelöster Stoffe"
+    },
+    {
+      "question": "Welches europäische Königshaus regierte fast ununterbrochen von 1438 bis 1806 über das Heilige Römische Reich?",
+      "options": ["Bourbon", "Habsburg", "Wittelsbach"],
+      "correct": "Habsburg"
+    },
+    {
+      "question": "Welcher Kubrick-Film handelt vom Vietnamkrieg und beginnt mit einer Rekruten-Ausbildung?",
+      "options": ["Apocalypse Now", "Full Metal Jacket", "Platoon"],
+      "correct": "Full Metal Jacket"
+    },
+    {
+      "question": "Welches 1996 erschienene Spiel von id Software ermöglichte erstmals echtes 3D-Online-Deathmatch?",
+      "options": ["Duke Nukem 3D", "Quake", "Unreal"],
+      "correct": "Quake"
+    },
+    {
+      "question": "Welches Gewürz verleiht dem indischen Gericht Biryani seine gelbe Farbe?",
+      "options": ["Paprika", "Safran", "Kreuzkümmel"],
+      "correct": "Safran"
+    },
+    {
+      "question": "Was beschreibt die 'Drittel-Regel' in der Fotografie?",
+      "options": [
+        "Eine Regel für Belichtungszeit",
+        "Eine Bildkompositionsregel",
+        "Eine Regel für Weißabgleich"
+      ],
+      "correct": "Eine Bildkompositionsregel"
+    },
+    {
+      "question": "In welchem Counter-Strike-Spiel wurde das Rank-System mit 18 Rängen von Silber bis Global Elite eingeführt?",
+      "options": [
+        "Counter-Strike: Source",
+        "Counter-Strike: Global Offensive",
+        "Counter-Strike 1.6"
+      ],
+      "correct": "Counter-Strike: Global Offensive"
+    },
+    {
+      "question": "Was für ein Getränk ist ein 'Negroni'?",
+      "options": [
+        "Ein Whiskey-Cocktail",
+        "Ein Gin-Cocktail mit Campari und Wermut",
+        "Ein Rum-Longdrink"
+      ],
+      "correct": "Ein Gin-Cocktail mit Campari und Wermut"
+    },
+    {
+      "question": "Welche Schlacht von 1683 beendete die osmanische Belagerung Wiens?",
+      "options": [
+        "Schlacht bei Mohács",
+        "Schlacht am Kahlenberg",
+        "Schlacht bei Lepanto"
+      ],
+      "correct": "Schlacht am Kahlenberg"
+    },
+    {
+      "question": "Welches 90er-Jahre-Spiel ließ den Spieler als böser Dungeon-Herrscher Helden in Fallen locken?",
+      "options": ["Diablo", "Dungeon Keeper", "Baldur's Gate"],
+      "correct": "Dungeon Keeper"
+    },
+    {
+      "question": "Wie heißt die traditionelle äthiopische Kaffeezeremonie?",
+      "options": ["Bunna Maflat", "Jebena Buna", "Kahwa Ceremony"],
+      "correct": "Jebena Buna"
+    },
+    {
+      "question": "Welches Vitamin wird vom menschlichen Körper bei Sonneneinstrahlung selbst produziert?",
+      "options": ["Vitamin A", "Vitamin C", "Vitamin D"],
+      "correct": "Vitamin D"
+    },
+    {
+      "question": "Was beschreibt in der Videobearbeitung ein 'J-Cut'?",
+      "options": [
+        "Der Ton der nächsten Szene beginnt vor dem Bildwechsel",
+        "Ein harter Schnitt ohne Übergang",
+        "Ein Rückwärts-Schnitt in der Timeline"
+      ],
+      "correct": "Der Ton der nächsten Szene beginnt vor dem Bildwechsel"
+    }
+  ]
+}

@@ -1,20 +1,25 @@
 {
+  "settings": {
+    "cashBuilderMaxQuestions": 50,
+    "cashBuilderTimeSeconds": 300,
+    "chaseTimePerQuestionSeconds": 30,
+    "partyMode": true,
+    "chaserAccuracyPercentage": 80,
+    "cashPerCorrectAnswer": 2.5,
+    "chaserRoundLength": 15,
+    "lastChanceLowerPct": 15,
+    "lastChanceUpperPct": 25,
+    "highOfferMultiplier": 1.6,
+    "lowOfferMultiplier": 0.4
+  },
   "cashBuilder": [
     {
       "question": "Welcher Radprofi wurde als 'Der Kannibale' bezeichnet?",
       "answer": "Eddy Merckx"
     },
     {
-      "question": "Aus welcher Frucht wird Guacamole hauptsächlich hergestellt?",
-      "answer": "Avocado"
-    },
-    {
-      "question": "Wie heißt die Terroristen-Fraktion auf der Counter-Strike-Map Dust2?",
-      "answer": "Elite Crew"
-    },
-    {
-      "question": "Welches Land produziert weltweit den meisten Kaffee?",
-      "answer": "Brasilien"
+      "question": "Wie viele Unterhosen hat Matze mit?",
+      "answer": "5"
     },
     {
       "question": "In welchem Jahr begann der Dreißigjährige Krieg?",
@@ -29,16 +34,12 @@
       "answer": "Fallout"
     },
     {
-      "question": "Welcher österreichische Bundeskanzler war der Hauptakteur im Ibiza-Skandal 2019?",
-      "answer": "Heinz-Christian Strache (als Vizekanzler)"
+      "question": "Welcher österreichische Vizekanzler trat 2019 nach dem Ibiza-Skandal zurück?",
+      "answer": "Heinz-Christian Strache"
     },
     {
       "question": "Aus welchem Land stammt das Gericht Pad Thai?",
       "answer": "Thailand"
-    },
-    {
-      "question": "Wie viele Spieler stehen bei einem kompetitiven Counter-Strike-Match pro Team?",
-      "answer": "Fünf"
     },
     {
       "question": "Wer führte Regie bei 'A Clockwork Orange'?",
@@ -61,15 +62,11 @@
       "answer": "Stickstoff"
     },
     {
-      "question": "Was versteht man beim Kaffee unter 'Single Origin'?",
-      "answer": "Kaffee aus einer einzigen Anbauregion"
-    },
-    {
       "question": "In welchem 90er-Spiel sammelt ein Bandicoot Äpfel und Kisten?",
       "answer": "Crash Bandicoot"
     },
     {
-      "question": "Welches alkoholische Getränk wird aus Agaven hergestellt?",
+      "question": "Welches ekelhafte alkoholische Getränk wird aus Agaven hergestellt?",
       "answer": "Tequila"
     },
     {
@@ -89,10 +86,6 @@
       "answer": "Feyenoord"
     },
     {
-      "question": "Was beschreibt in Counter-Strike der Begriff 'Eco-Runde'?",
-      "answer": "Eine Sparrunde, in der das Team wenig oder kein Geld ausgibt"
-    },
-    {
       "question": "Welcher Cocktail besteht klassisch aus Wodka, Tomatensaft und Gewürzen?",
       "answer": "Bloody Mary"
     },
@@ -107,6 +100,342 @@
     {
       "question": "Welche italienische Kaffeezubereitung heißt übersetzt 'beschmutzt' oder 'befleckt'?",
       "answer": "Caffè Macchiato"
+    },
+    {
+      "question": "Welcher belgische Radrennfahrer gewann 2024 bei den Olympischen Spielen in Paris sowohl das Zeitfahren als auch das Straßenrennen?",
+      "answer": "Remco Evenepoel"
+    },
+    {
+      "question": "Welcher Tennisspieler gewann bei den Olympischen Spielen 2024 in Paris seine erste Goldmedaille?",
+      "answer": "Novak Djokovic"
+    },
+    {
+      "question": "Wie heißt die Technik beim Radfahren, bei der man im Windschatten fährt?",
+      "answer": "Drafting"
+    },
+    {
+      "question": "Welches Enzym spaltet im menschlichen Magen Proteine?",
+      "answer": "Pepsin"
+    },
+    {
+      "question": "In welchem Jahr fiel die Berliner Mauer?",
+      "answer": "1989"
+    },
+    {
+      "question": "Welcher französische Schwimmer gewann 2024 in Paris vier olympische Goldmedaillen?",
+      "answer": "Léon Marchand"
+    },
+    {
+      "question": "Aus welchem Land stammt die Kaffeepflanze ursprünglich?",
+      "answer": "Äthiopien"
+    },
+    {
+      "question": "Welcher Friedensvertrag beendete 1713 den Spanischen Erbfolgekrieg?",
+      "answer": "Der Friede von Utrecht"
+    },
+    {
+      "question": "Wie heißen die Zellorganellen, die als Kraftwerke der Zelle bezeichnet werden?",
+      "answer": "Mitochondrien"
+    },
+    {
+      "question": "Welches Teilchen wurde 2012 am CERN nachgewiesen?",
+      "answer": "Das Higgs-Boson"
+    },
+    {
+      "question": "Was versteht man unter 'Channeling' bei der Espressozubereitung?",
+      "answer": "Ungleichmäßiger Wasserdurchfluss durch das Kaffeemehl"
+    },
+    {
+      "question": "In welchem Kubrick-Film werden ausschließlich Kerzen für Innenszenen verwendet?",
+      "answer": "Barry Lyndon"
+    },
+    {
+      "question": "Was versteht man in der Videobearbeitung unter einer 'LUT'?",
+      "answer": "Look-Up Table – eine Farbumrechnungstabelle"
+    },
+    {
+      "question": "Wie heißt das Maß für den Rollwiderstand eines Fahrradreifens?",
+      "answer": "Crr (Coefficient of Rolling Resistance)"
+    },
+    {
+      "question": "Wie heißt der programmierte Zelltod in der Biologie?",
+      "answer": "Apoptose"
+    },
+    {
+      "question": "Wie heißt das Anti-Cheat-System von Valve?",
+      "answer": "VAC (Valve Anti-Cheat)"
+    },
+    {
+      "question": "Welcher Arzt entdeckte 1928 zufällig das Penicillin?",
+      "answer": "Alexander Fleming"
+    },
+    {
+      "question": "Was beschreibt die Drake-Gleichung?",
+      "answer": "Eine Abschätzung kontaktfähiger Zivilisationen in der Milchstraße"
+    },
+    {
+      "question": "Welches biologische Phänomen beschreibt 'Pleiotropie'?",
+      "answer": "Ein einzelnes Gen beeinflusst mehrere Merkmale"
+    },
+    {
+      "question": "Welcher Kubrick-Film war sein letzter und hatte seine Premiere nach seinem Tod?",
+      "answer": "Eyes Wide Shut"
+    },
+    {
+      "question": "Was besagt die Sunny-16-Regel in der Fotografie?",
+      "answer": "Bei Sonnenschein Blende 16 und Verschlusszeit = 1/ISO"
+    },
+    {
+      "question": "Wie heißt das System der österreichischen Sozialpartnerschaft?",
+      "answer": "Paritätische Kommission"
+    },
+    {
+      "question": "Welches 1993 erschienene Point-and-Click-Adventure spielt auf einer mysteriösen Insel?",
+      "answer": "Myst"
+    },
+    {
+      "question": "Wie viele Chromosomenpaare hat ein gesunder Mensch?",
+      "answer": "23"
+    },
+    {
+      "question": "Wie heißt die bekannteste Map in Counter-Strike?",
+      "answer": "Dust2"
+    },
+    {
+      "question": "Welches alkoholische Getränk wird aus Reis hergestellt und stammt aus Japan?",
+      "answer": "Sake"
+    },
+    {
+      "question": "Welche Band veröffentlichte das Album 'The Dark Side of the Moon'?",
+      "answer": "Pink Floyd"
+    },
+    {
+      "question": "Wie viele Grand-Slam-Turniere gibt es im Tennis pro Jahr?",
+      "answer": "Vier"
+    },
+    {
+      "question": "Wie lange brennt ein Molotov in CS2?",
+      "answer": "7 Sekunden"
+    },
+    {
+      "question": "Welche Band hatte den Hit 'Smells Like Teen Spirit'?",
+      "answer": "Nirvana"
+    },
+    {
+      "question": "Welcher Tennisspieler hat die meisten Grand-Slam-Titel im Herren-Einzel gewonnen?",
+      "answer": "Novak Djokovic (24)"
+    },
+    {
+      "question": "Was ist ein Peloton beim Radsport?",
+      "answer": "Das Hauptfeld der Fahrer"
+    },
+    {
+      "question": "Welches Vitamin wird vom Körper bei Sonneneinstrahlung selbst produziert?",
+      "answer": "Vitamin D"
+    },
+    {
+      "question": "Welche Band sang 'Stairway to Heaven'?",
+      "answer": "Led Zeppelin"
+    },
+    {
+      "question": "Was ist ein Negroni?",
+      "answer": "Ein Cocktail aus Gin, Campari und Wermut"
+    },
+    {
+      "question": "Welches Schaltwerk gilt bei Rennrädern als Spitzengruppe von Shimano?",
+      "answer": "Dura-Ace"
+    },
+    {
+      "question": "Welcher Kongress ordnete Europa nach den Napoleonischen Kriegen neu?",
+      "answer": "Wiener Kongress"
+    },
+    {
+      "question": "Was kostet eine Rauchgranate in CS2?",
+      "answer": "$300"
+    },
+    {
+      "question": "Welcher Song von Queen wird häufig in Sportstadien gespielt und enthält Klatschen und Stampfen?",
+      "answer": "We Will Rock You"
+    },
+    {
+      "question": "Wie heißt die höchste Bergkategorie bei der Tour de France?",
+      "answer": "Hors Catégorie"
+    },
+    {
+      "question": "Welches chemische Symbol hat Sauerstoff?",
+      "answer": "O"
+    },
+    {
+      "question": "Welches 90er-Spiel von id Software begründete das Ego-Shooter-Genre maßgeblich?",
+      "answer": "Doom"
+    },
+    {
+      "question": "Welche Sportart wurde 2024 erstmals bei Olympischen Spielen ausgetragen und auf dem Place de la Concorde gezeigt?",
+      "answer": "Breaking"
+    },
+    {
+      "question": "Welche Band veröffentlichte 'Hotel California'?",
+      "answer": "Eagles"
+    },
+    {
+      "question": "Was beschreibt der fotografische Begriff 'Bokeh'?",
+      "answer": "Die ästhetische Qualität der Unschärfe im Hintergrund"
+    },
+    {
+      "question": "Was versteht man in der Videobearbeitung unter einem 'Jump Cut'?",
+      "answer": "Ein harter Schnitt innerhalb derselben Einstellung"
+    },
+    {
+      "question": "Welches Getränk besteht aus Espresso und heißem Wasser?",
+      "answer": "Americano"
+    },
+    {
+      "question": "In welcher Stadt findet das Tennis-Grand-Slam-Turnier auf Sand statt?",
+      "answer": "Paris (Roland Garros)"
+    },
+    {
+      "question": "Wie heißt die Aerodynamik-Position auf dem Rennrad mit gesenktem Oberkörper?",
+      "answer": "Unterlenkerposition (Drops)"
+    },
+    {
+      "question": "Welche britische Band veröffentlichte das Album 'Abbey Road'?",
+      "answer": "The Beatles"
+    },
+    {
+      "question": "Was kostet ein Decoy in CS2?",
+      "answer": "$50"
+    },
+    {
+      "question": "Wie heißt das traditionsreiche Radrennen quer durch Flandern?",
+      "answer": "Ronde van Vlaanderen (Flandern-Rundfahrt)"
+    },
+    {
+      "question": "In welchem 90er-Spiel verwaltet man ein Krankenhaus und behandelt fiktive Krankheiten?",
+      "answer": "Theme Hospital"
+    },
+    {
+      "question": "Welcher Sänger war Frontmann von The Doors?",
+      "answer": "Jim Morrison"
+    },
+    {
+      "question": "Was kostet eine M4A4 in CS2?",
+      "answer": "$2.900"
+    },
+    {
+      "question": "Wie hieß der blaue Igel, der 1991 sein erstes Videospiel bekam?",
+      "answer": "Sonic the Hedgehog"
+    },
+    {
+      "question": "Welches traditionelle Gericht aus Valencia enthält Kaninchen und Schnecken?",
+      "answer": "Paella Valenciana"
+    },
+    {
+      "question": "Welche Erzähltechnik machte Kubricks 'The Killing' zum Meilenstein des Film Noir?",
+      "answer": "Nicht-lineare Erzählstruktur"
+    },
+    {
+      "question": "Was ist der Hauptbestandteil einer Vinaigrette?",
+      "answer": "Öl und Essig"
+    },
+    {
+      "question": "Wie heißt die Quizshow-Legende, die als 'The Governess' bekannt ist?",
+      "answer": "Anne Hegerty"
+    },
+    {
+      "question": "Wer gewann bei Olympia 2024 Gold im Herren-100-Meter-Sprint?",
+      "answer": "Noah Lyles"
+    },
+    {
+      "question": "Welche Band sang 'Wonderwall'?",
+      "answer": "Oasis"
+    },
+    {
+      "question": "Was ist ein 'Brevet' im Radsport?",
+      "answer": "Eine Langstreckenfahrt mit Kontrollpunkten über eine vorgegebene Distanz"
+    },
+    {
+      "question": "Wie viel kostet eine Brandgranate auf CT-Seite in CS2?",
+      "answer": "$500"
+    },
+    {
+      "question": "Welches europäische Königshaus regierte über das Heilige Römische Reich von 1438 bis 1806?",
+      "answer": "Habsburg"
+    },
+    {
+      "question": "Wer sang den Hit 'Billie Jean'?",
+      "answer": "Michael Jackson"
+    },
+    {
+      "question": "Wie heißt das berühmte Lied von Nirvanas Album 'Nevermind', das mit einem Baby auf dem Cover bekannt ist?",
+      "answer": "Smells Like Teen Spirit"
+    },
+    {
+      "question": "In welchem 90er-Jahre-Spiel kämpft ein Söldner namens Cloud Strife?",
+      "answer": "Final Fantasy VII"
+    },
+    {
+      "question": "Wie viele Runden muss ein Team in einem regulären CS2-Match gewinnen?",
+      "answer": "13"
+    },
+    {
+      "question": "Welche US-Amerikanerin gewann überraschend Gold im olympischen Damen-Straßenrennen 2024?",
+      "answer": "Kristen Faulkner"
+    },
+    {
+      "question": "Welches alkoholische Getränk wird traditionell aus Wacholder hergestellt?",
+      "answer": "Gin"
+    },
+    {
+      "question": "Welche Counter-Strike-Map spielt in einem südamerikanischen Tempel?",
+      "answer": "Atztec"
+    },
+    {
+      "question": "Wie heißt der Prozess, bei dem Zellen ohne Sauerstoff Energie gewinnen?",
+      "answer": "Anaerobe Glykolyse bzw. Gärung"
+    },
+    {
+      "question": "Welcher Kubrick-Film handelt vom Vietnamkrieg?",
+      "answer": "Full Metal Jacket"
+    },
+    {
+      "question": "Welche Band sang 'Under the Bridge'?",
+      "answer": "Red Hot Chili Peppers"
+    },
+    {
+      "question": "Was kostet eine Blendgranate (Flashbang) in CS2?",
+      "answer": "$200"
+    },
+    {
+      "question": "Welche österreichische Partei wurde 2012 von Frank Stronach gegründet?",
+      "answer": "Team Stronach"
+    },
+    {
+      "question": "Was ist ein Cortado?",
+      "answer": "Ein Espresso mit einem kleinen Schuss warmer Milch"
+    },
+    {
+      "question": "Wer sang 'Purple Haze'?",
+      "answer": "Jimi Hendrix"
+    },
+    {
+      "question": "Welcher Song von Toto handelt von einem Kontinent?",
+      "answer": "Africa"
+    },
+    {
+      "question": "Welche Band veröffentlichte das Album 'Appetite for Destruction'?",
+      "answer": "Guns N' Roses"
+    },
+    {
+      "question": "Was ist ein 'Breakaway' im Radsport?",
+      "answer": "Eine Ausreißergruppe, die sich vom Hauptfeld löst"
+    },
+    {
+      "question": "Wie heißt das älteste Radrennen der Welt, das als 'Monument' gilt?",
+      "answer": "Lüttich–Bastogne–Lüttich"
+    },
+    {
+      "question": "Welches Lied von David Bowie handelt von einem fiktiven Rockstar vom Mars?",
+      "answer": "Ziggy Stardust"
     }
   ],
   "theChase": [
@@ -126,9 +455,9 @@
       "correct": "Fnatic"
     },
     {
-      "question": "Welche Kaffeezubereitungsmethode wurde in Japan populär und nutzt einen langsamen Kaltwasser-Tropfprozess über viele Stunden?",
-      "options": ["Pour Over", "Cold Drip (Kyoto-Style)", "Siphon"],
-      "correct": "Cold Drip (Kyoto-Style)"
+      "question": "Welche Kaffeezubereitungsmethode nutzt einen langsamen Kaltwasser-Tropfprozess über Stunden und wurde in Japan populär?",
+      "options": ["Pour Over", "Cold Drip", "Siphon"],
+      "correct": "Cold Drip"
     },
     {
       "question": "Welcher Vertrag gründete 1957 die Europäische Wirtschaftsgemeinschaft?",
@@ -154,7 +483,7 @@
       "correct": "Paella Valenciana"
     },
     {
-      "question": "Welcher österreichische Bundeskanzler wurde 2017 mit 31 Jahren jüngster Regierungschef Europas?",
+      "question": "Welcher österreichische Bundeskanzler wurde 2017 jüngster Regierungschef Europas?",
       "options": ["Werner Faymann", "Sebastian Kurz", "Christian Kern"],
       "correct": "Sebastian Kurz"
     },
@@ -164,12 +493,7 @@
       "correct": "Theme Hospital"
     },
     {
-      "question": "Welche Counter-Strike-Map spielt in einer marokkanisch anmutenden Umgebung und wurde 2024 als Remake neu eingeführt?",
-      "options": ["Mirage", "Dust2", "Anubis"],
-      "correct": "Dust2"
-    },
-    {
-      "question": "In welchem Kubrick-Film spielen reale Schauspieler neben einem berühmten sprechenden Computer namens HAL 9000?",
+      "question": "In welchem Kubrick-Film spielen Schauspieler neben dem sprechenden Computer HAL 9000?",
       "options": [
         "A Clockwork Orange",
         "2001: Odyssee im Weltraum",
@@ -178,27 +502,9 @@
       "correct": "2001: Odyssee im Weltraum"
     },
     {
-      "question": "Was beschreibt der fotografische Begriff 'Bokeh'?",
-      "options": [
-        "Bildstabilisierung",
-        "Die ästhetische Qualität der Unschärfe im Hintergrund",
-        "Überbelichtung"
-      ],
-      "correct": "Die ästhetische Qualität der Unschärfe im Hintergrund"
-    },
-    {
       "question": "Aus welchem Land stammt der Käse Gruyère?",
       "options": ["Frankreich", "Schweiz", "Österreich"],
       "correct": "Schweiz"
-    },
-    {
-      "question": "Was beschreibt in Counter-Strike ein 'Clutch'?",
-      "options": [
-        "Einen taktischen Rückzug",
-        "Das Gewinnen einer Runde als letzter überlebender Spieler",
-        "Einen Headshot aus großer Entfernung"
-      ],
-      "correct": "Das Gewinnen einer Runde als letzter überlebender Spieler"
     },
     {
       "question": "Welche Kraft hält die Quarks in Protonen und Neutronen zusammen?",
@@ -227,15 +533,10 @@
       "question": "Was misst ein Refraktometer bei der Kaffeezubereitung?",
       "options": [
         "Die Wassertemperatur",
-        "Die Konzentration gelöster Stoffe",
+        "Die Konzentration gelöster Stoffe (TDS)",
         "Den Mahlgrad"
       ],
-      "correct": "Die Konzentration gelöster Stoffe"
-    },
-    {
-      "question": "Welches europäische Königshaus regierte fast ununterbrochen von 1438 bis 1806 über das Heilige Römische Reich?",
-      "options": ["Bourbon", "Habsburg", "Wittelsbach"],
-      "correct": "Habsburg"
+      "correct": "Die Konzentration gelöster Stoffe (TDS)"
     },
     {
       "question": "Welcher Kubrick-Film handelt vom Vietnamkrieg und beginnt mit einer Rekruten-Ausbildung?",
@@ -248,7 +549,7 @@
       "correct": "Quake"
     },
     {
-      "question": "Welches Gewürz verleiht dem indischen Gericht Biryani seine gelbe Farbe?",
+      "question": "Welches Gewürz verleiht dem Gericht Biryani seine gelbe Farbe?",
       "options": ["Paprika", "Safran", "Kreuzkümmel"],
       "correct": "Safran"
     },
@@ -262,7 +563,7 @@
       "correct": "Eine Bildkompositionsregel"
     },
     {
-      "question": "In welchem Counter-Strike-Spiel wurde das Rank-System mit 18 Rängen von Silber bis Global Elite eingeführt?",
+      "question": "In welchem Counter-Strike-Spiel wurde das Rangsystem mit 18 Rängen eingeführt?",
       "options": [
         "Counter-Strike: Source",
         "Counter-Strike: Global Offensive",
@@ -289,7 +590,7 @@
       "correct": "Schlacht am Kahlenberg"
     },
     {
-      "question": "Welches 90er-Jahre-Spiel ließ den Spieler als böser Dungeon-Herrscher Helden in Fallen locken?",
+      "question": "Welches 90er-Jahre-Spiel ließ den Spieler als Dungeon-Herrscher Helden in Fallen locken?",
       "options": ["Diablo", "Dungeon Keeper", "Baldur's Gate"],
       "correct": "Dungeon Keeper"
     },
@@ -299,7 +600,7 @@
       "correct": "Jebena Buna"
     },
     {
-      "question": "Welches Vitamin wird vom menschlichen Körper bei Sonneneinstrahlung selbst produziert?",
+      "question": "Welches Vitamin wird vom Körper bei Sonneneinstrahlung produziert?",
       "options": ["Vitamin A", "Vitamin C", "Vitamin D"],
       "correct": "Vitamin D"
     },
@@ -311,6 +612,567 @@
         "Ein Rückwärts-Schnitt in der Timeline"
       ],
       "correct": "Der Ton der nächsten Szene beginnt vor dem Bildwechsel"
+    },
+    {
+      "question": "Welcher Tennisspieler besiegte Carlos Alcaraz im Olympia-Finale 2024?",
+      "options": ["Rafael Nadal", "Novak Djokovic", "Jannik Sinner"],
+      "correct": "Novak Djokovic"
+    },
+    {
+      "question": "Was kostet eine AWP in CS2?",
+      "options": ["$4.500", "$4.750", "$5.000"],
+      "correct": "$4.750"
+    },
+    {
+      "question": "Welche Aufbereitungsmethode für Rohkaffee wird auch 'natural processing' genannt?",
+      "options": ["Washed", "Dry", "Honey"],
+      "correct": "Dry"
+    },
+    {
+      "question": "Welcher Counter-Strike-Profi war unter dem Alias 'f0rest' bekannt?",
+      "options": ["Patrik Lindberg", "Christopher Alesund", "Olof Kajbjer"],
+      "correct": "Patrik Lindberg"
+    },
+    {
+      "question": "Was beschreibt die Heisenbergsche Unschärferelation?",
+      "options": [
+        "Ort und Impuls eines Teilchens sind nicht gleichzeitig beliebig genau bestimmbar",
+        "Energie kann nicht erzeugt oder vernichtet werden",
+        "Licht verhält sich gleichzeitig als Welle und Teilchen"
+      ],
+      "correct": "Ort und Impuls eines Teilchens sind nicht gleichzeitig beliebig genau bestimmbar"
+    },
+    {
+      "question": "Was beschreibt der medizinische Begriff 'Tachykardie'?",
+      "options": [
+        "Zu niedriger Blutdruck",
+        "Zu schneller Herzschlag",
+        "Unregelmäßiger Herzrhythmus"
+      ],
+      "correct": "Zu schneller Herzschlag"
+    },
+    {
+      "question": "Was beschreibt 'CRISPR-Cas9'?",
+      "options": [
+        "Ein Verfahren zur Zellkultivierung",
+        "Eine Genschere zur gezielten DNA-Bearbeitung",
+        "Ein Protein zur Immunabwehr"
+      ],
+      "correct": "Eine Genschere zur gezielten DNA-Bearbeitung"
+    },
+    {
+      "question": "Welcher Architekt entwarf die Kunsthal in Rotterdam?",
+      "options": ["Rem Koolhaas", "Renzo Piano", "Piet Blom"],
+      "correct": "Rem Koolhaas"
+    },
+    {
+      "question": "Welches spezielle Objektiv nutzte Kubrick für die Kerzenszenen in 'Barry Lyndon'?",
+      "options": [
+        "Leica Summicron 35mm",
+        "Zeiss Planar 50mm f/0.7",
+        "Nikon Nikkor 55mm f/1.2"
+      ],
+      "correct": "Zeiss Planar 50mm f/0.7"
+    },
+    {
+      "question": "Was beschreibt die 'hyperfokale Distanz' in der Fotografie?",
+      "options": [
+        "Die kürzeste Fokussierdistanz eines Objektivs",
+        "Die Entfernung, ab der alles bis unendlich scharf wird",
+        "Der maximale Zoombereich"
+      ],
+      "correct": "Die Entfernung, ab der alles bis unendlich scharf wird"
+    },
+    {
+      "question": "Welcher Codec wird im professionellen Videoschnitt häufig als Zwischenformat verwendet?",
+      "options": ["H.264", "Apple ProRes", "RAW"],
+      "correct": "Apple ProRes"
+    },
+    {
+      "question": "Was beschreibt den 'Peloton-Effekt' beim Radfahren?",
+      "options": [
+        "Höherer Luftwiderstand in der Gruppe",
+        "Energieersparnis von bis zu 40% im Windschatten der Gruppe",
+        "Beschleunigung beim Bergabfahren"
+      ],
+      "correct": "Energieersparnis von bis zu 40% im Windschatten der Gruppe"
+    },
+    {
+      "question": "Was beschreibt 'epigenetische Vererbung'?",
+      "options": [
+        "Vererbung durch Mutationen in der DNA-Sequenz",
+        "Vererbung von Genaktivierungsmustern ohne Änderung der DNA-Sequenz",
+        "Vererbung über mitochondriale DNA"
+      ],
+      "correct": "Vererbung von Genaktivierungsmustern ohne Änderung der DNA-Sequenz"
+    },
+    {
+      "question": "Welche Stadt wurde beim deutschen Bombardement im Mai 1940 fast vollständig zerstört?",
+      "options": ["Amsterdam", "Rotterdam", "Den Haag"],
+      "correct": "Rotterdam"
+    },
+    {
+      "question": "In welchem Kubrick-Film basiert die Handlung auf einem Roman von Arthur C. Clarke?",
+      "options": [
+        "A Clockwork Orange",
+        "2001: Odyssee im Weltraum",
+        "Full Metal Jacket"
+      ],
+      "correct": "2001: Odyssee im Weltraum"
+    },
+    {
+      "question": "Was beschreibt der 'Circle of Confusion' in der Fotografie?",
+      "options": [
+        "Den Bildkreis eines Objektivs",
+        "Den maximalen Unschärfepunkt, der noch als scharf wahrgenommen wird",
+        "Die chromatische Aberration"
+      ],
+      "correct": "Den maximalen Unschärfepunkt, der noch als scharf wahrgenommen wird"
+    },
+    {
+      "question": "Was beschreibt die 'Bitrate' bei einer Videoaufnahme?",
+      "options": [
+        "Die Anzahl der Farben pro Pixel",
+        "Die Datenmenge pro Zeiteinheit",
+        "Die Auflösung des Sensors"
+      ],
+      "correct": "Die Datenmenge pro Zeiteinheit"
+    },
+    {
+      "question": "Welches Material wird bei modernen Profi-Rennrad-Rahmen am häufigsten verwendet?",
+      "options": ["Aluminium", "Titan", "Carbon"],
+      "correct": "Carbon"
+    },
+    {
+      "question": "Was beschreibt 'RDT' (Ross Droplet Technique) in der Specialty-Coffee-Szene?",
+      "options": [
+        "Eine Methode zum Entkalken der Mühle",
+        "Wassertropfen auf Bohnen vor dem Mahlen gegen Statik",
+        "Eine Brühmethode mit Tröpfchenbewässerung"
+      ],
+      "correct": "Wassertropfen auf Bohnen vor dem Mahlen gegen Statik"
+    },
+    {
+      "question": "Welches Phänomen beschreibt die 'Blut-Hirn-Schranke'?",
+      "options": [
+        "Die Trennung von arteriellem und venösem Blut",
+        "Eine selektive Barriere zwischen Blutkreislauf und Gehirngewebe",
+        "Die Verbindung zwischen linker und rechter Gehirnhälfte"
+      ],
+      "correct": "Eine selektive Barriere zwischen Blutkreislauf und Gehirngewebe"
+    },
+    {
+      "question": "Wie heißt das Phänomen in der Biologie, bei dem ein Gen mehrere Merkmale beeinflusst?",
+      "options": ["Polygenie", "Pleiotropie", "Epistasie"],
+      "correct": "Pleiotropie"
+    },
+    {
+      "question": "Wie viele Goldmedaillen gewann der Schwimmer Léon Marchand bei den Olympischen Spielen 2024?",
+      "options": ["Zwei", "Drei", "Vier"],
+      "correct": "Vier"
+    },
+    {
+      "question": "Welche Band spielte das längste Set in der Geschichte des Glastonbury Festivals?",
+      "options": ["The Cure", "Radiohead", "Foo Fighters"],
+      "correct": "The Cure"
+    },
+    {
+      "question": "Was kostet eine AK-47 in CS2?",
+      "options": ["$2.500", "$2.700", "$2.900"],
+      "correct": "$2.700"
+    },
+    {
+      "question": "Was kostet ein Molotov-Cocktail auf T-Seite in CS2?",
+      "options": ["$300", "$400", "$500"],
+      "correct": "$400"
+    },
+    {
+      "question": "Welches Grand-Slam-Turnier wird auf Rasen gespielt?",
+      "options": ["Roland Garros", "Wimbledon", "US Open"],
+      "correct": "Wimbledon"
+    },
+    {
+      "question": "Wie lange brennt ein Molotov in CS2?",
+      "options": ["5 Sekunden", "7 Sekunden", "10 Sekunden"],
+      "correct": "7 Sekunden"
+    },
+    {
+      "question": "Welcher Tennisspieler gewann die meisten Grand-Slam-Titel im Herren-Einzel?",
+      "options": ["Roger Federer", "Rafael Nadal", "Novak Djokovic"],
+      "correct": "Novak Djokovic"
+    },
+    {
+      "question": "In welchem 90er-Spiel kämpft man als Söldner namens Cloud Strife?",
+      "options": ["Final Fantasy VI", "Final Fantasy VII", "Chrono Trigger"],
+      "correct": "Final Fantasy VII"
+    },
+    {
+      "question": "Welche Band sang 'Creep', das 1993 zum Hit wurde?",
+      "options": ["Radiohead", "Blur", "Pulp"],
+      "correct": "Radiohead"
+    },
+    {
+      "question": "Was versteht man unter 'Cadence' beim Radfahren?",
+      "options": [
+        "Die Geschwindigkeit bergab",
+        "Die Trittfrequenz",
+        "Der Reifendruck"
+      ],
+      "correct": "Die Trittfrequenz"
+    },
+    {
+      "question": "Wer gewann die olympische Damen-100-Meter-Goldmedaille 2024 und holte damit die erste Medaille für Saint Lucia?",
+      "options": [
+        "Sha'Carri Richardson",
+        "Julien Alfred",
+        "Shelly-Ann Fraser-Pryce"
+      ],
+      "correct": "Julien Alfred"
+    },
+    {
+      "question": "Welcher Sänger war Frontmann der Band The Doors?",
+      "options": ["Robert Plant", "Jim Morrison", "Mick Jagger"],
+      "correct": "Jim Morrison"
+    },
+    {
+      "question": "Was kostet eine Desert Eagle in CS2?",
+      "options": ["$500", "$700", "$800"],
+      "correct": "$700"
+    },
+    {
+      "question": "Welcher Kubrick-Film basiert auf einem Roman von Anthony Burgess?",
+      "options": ["Eyes Wide Shut", "A Clockwork Orange", "Barry Lyndon"],
+      "correct": "A Clockwork Orange"
+    },
+    {
+      "question": "Welches Gericht besteht aus rohem Fisch, mariniert in Zitronensaft?",
+      "options": ["Sashimi", "Ceviche", "Carpaccio"],
+      "correct": "Ceviche"
+    },
+    {
+      "question": "Welche Band veröffentlichte 'OK Computer'?",
+      "options": ["Muse", "Radiohead", "Coldplay"],
+      "correct": "Radiohead"
+    },
+    {
+      "question": "Welche Tennisspielerin hat die meisten Grand-Slam-Einzeltitel?",
+      "options": ["Serena Williams", "Margaret Court", "Steffi Graf"],
+      "correct": "Margaret Court"
+    },
+    {
+      "question": "Welche Band hatte den Hit 'Lose Yourself to Dance'?",
+      "options": ["Gorillaz", "Daft Punk", "LCD Soundsystem"],
+      "correct": "Daft Punk"
+    },
+    {
+      "question": "Was versteht man unter 'FTP' im Radsport?",
+      "options": [
+        "Die maximale Sprintleistung",
+        "Die funktionelle Schwellenleistung (Functional Threshold Power)",
+        "Die Reifenfrequenz"
+      ],
+      "correct": "Die funktionelle Schwellenleistung (Functional Threshold Power)"
+    },
+    {
+      "question": "Was beschreibt der Glasgow-Coma-Scale?",
+      "options": [
+        "Den Schweregrad einer Depression",
+        "Den Bewusstseinsgrad eines Patienten nach Hirnverletzung",
+        "Die Stufe einer Narkose"
+      ],
+      "correct": "Den Bewusstseinsgrad eines Patienten nach Hirnverletzung"
+    },
+    {
+      "question": "Wie heißt der legendäre Song von Queen mit opernhaften Passagen?",
+      "options": [
+        "We Are the Champions",
+        "Bohemian Rhapsody",
+        "Somebody to Love"
+      ],
+      "correct": "Bohemian Rhapsody"
+    },
+    {
+      "question": "Was ist 'Bianchi Celeste'?",
+      "options": [
+        "Ein italienisches Gericht",
+        "Die ikonische Farbe der Fahrradmarke Bianchi",
+        "Ein Cocktail aus der Lombardei"
+      ],
+      "correct": "Die ikonische Farbe der Fahrradmarke Bianchi"
+    },
+    {
+      "question": "Auf welchem Belag wird das Grand-Slam-Turnier in Paris (Roland Garros) gespielt?",
+      "options": ["Hartplatz", "Rasen", "Sand"],
+      "correct": "Sand"
+    },
+    {
+      "question": "Welcher Musiker war Frontmann von The Smiths?",
+      "options": ["Morrissey", "Ian Curtis", "Robert Smith"],
+      "correct": "Morrissey"
+    },
+    {
+      "question": "Wer gewann die olympische Goldmedaille 2024 im Herren-200-Meter-Sprint und holte damit die erste Goldmedaille für Botswana?",
+      "options": ["Noah Lyles", "Letsile Tebogo", "Erriyon Knighton"],
+      "correct": "Letsile Tebogo"
+    },
+    {
+      "question": "Welche Band veröffentlichte 'The Bends' und 'Kid A'?",
+      "options": ["Oasis", "Radiohead", "Blur"],
+      "correct": "Radiohead"
+    },
+    {
+      "question": "In welchem 90er-Spiel von Bullfrog Productions verwaltet man einen Vergnügungspark?",
+      "options": ["Theme Park", "RollerCoaster Tycoon", "SimCity 2000"],
+      "correct": "Theme Park"
+    },
+    {
+      "question": "Welcher Sänger wurde als 'King of Pop' bekannt?",
+      "options": ["Prince", "Michael Jackson", "Stevie Wonder"],
+      "correct": "Michael Jackson"
+    },
+    {
+      "question": "Welche Radrennserie umfasst Giro d'Italia, Tour de France und Vuelta a España?",
+      "options": ["World Tour", "Grand Tours", "Monuments"],
+      "correct": "Grand Tours"
+    },
+    {
+      "question": "Welches Getränk heißt auf Italienisch wörtlich 'eingeschränkt' und bezeichnet einen konzentrierten Espresso?",
+      "options": ["Lungo", "Ristretto", "Doppio"],
+      "correct": "Ristretto"
+    },
+    {
+      "question": "Wie viele Grand-Slam-Titel gewann Novak Djokovic insgesamt im Einzel?",
+      "options": ["20", "22", "24"],
+      "correct": "24"
+    },
+    {
+      "question": "Welche Band hatte den Hit 'Under Pressure' zusammen mit David Bowie?",
+      "options": ["The Rolling Stones", "Queen", "Led Zeppelin"],
+      "correct": "Queen"
+    },
+    {
+      "question": "Was beschreibt ein 'Bonk' beim Radfahren?",
+      "options": [
+        "Einen Platten Reifen",
+        "Plötzlichen Leistungseinbruch durch Glykogenmangel",
+        "Einen Sturz in der Abfahrt"
+      ],
+      "correct": "Plötzlichen Leistungseinbruch durch Glykogenmangel"
+    },
+    {
+      "question": "Wie heißt der CS2-Modus, in dem der Rang über Elo-Punkte bestimmt wird?",
+      "options": ["Competitive", "Premier", "Casual"],
+      "correct": "Premier"
+    },
+    {
+      "question": "Welche Band veröffentlichte das Album 'Rumours' im Jahr 1977?",
+      "options": ["Eagles", "Fleetwood Mac", "ABBA"],
+      "correct": "Fleetwood Mac"
+    },
+    {
+      "question": "Was versteht man unter einem 'Palmares' im Radsport?",
+      "options": [
+        "Eine bestimmte Griffposition",
+        "Die Sammlung aller Siege eines Fahrers",
+        "Ein Handschuh für Rennfahrer"
+      ],
+      "correct": "Die Sammlung aller Siege eines Fahrers"
+    },
+    {
+      "question": "Was beschreibt einen 'Flat White' im Unterschied zu einem Cappuccino?",
+      "options": [
+        "Weniger Milch, mehr Espresso",
+        "Microfoam statt steifem Milchschaum",
+        "Nur kalte Milch"
+      ],
+      "correct": "Microfoam statt steifem Milchschaum"
+    },
+    {
+      "question": "Welche Band sang 'Don't Stop Believin''?",
+      "options": ["Bon Jovi", "Journey", "Foreigner"],
+      "correct": "Journey"
+    },
+    {
+      "question": "Was beschreibt 'Crosshair Placement' in Counter-Strike?",
+      "options": [
+        "Die Einstellung des Fadenkreuzes im Menü",
+        "Das vorausschauende Positionieren des Fadenkreuzes auf Kopfhöhe",
+        "Die Farbe des Fadenkreuzes"
+      ],
+      "correct": "Das vorausschauende Positionieren des Fadenkreuzes auf Kopfhöhe"
+    },
+    {
+      "question": "In welchem 90er-Spiel erkundet man Rätsel in der Ego-Perspektive auf einer Weltraum-Station namens Citadel?",
+      "options": ["Doom", "System Shock", "Half-Life"],
+      "correct": "System Shock"
+    },
+    {
+      "question": "Wie heißt das Manöver in Counter-Strike, bei dem ein Spieler einen engen Winkel schnell durchschreitet, um den Gegner kurz zu sehen?",
+      "options": ["Jiggle Peek", "Bunny Hop", "Strafe Jump"],
+      "correct": "Jiggle Peek"
+    },
+    {
+      "question": "Was beschreibt ein 'Domestique' im Profi-Radsport?",
+      "options": [
+        "Den Teamchef",
+        "Einen Helfer, der für den Kapitän arbeitet",
+        "Den Mechaniker"
+      ],
+      "correct": "Einen Helfer, der für den Kapitän arbeitet"
+    },
+    {
+      "question": "Welche Band veröffentlichte 'Back in Black', eines der meistverkauften Alben?",
+      "options": ["Metallica", "AC/DC", "Iron Maiden"],
+      "correct": "AC/DC"
+    },
+    {
+      "question": "Auf welchem Belag werden die US Open im Tennis gespielt?",
+      "options": ["Sand", "Rasen", "Hartplatz"],
+      "correct": "Hartplatz"
+    },
+    {
+      "question": "Wie heißt die fünftägige Radfernfahrt, die traditionell als 'Generalprobе' für die Tour de France gilt?",
+      "options": ["Paris–Nice", "Critérium du Dauphiné", "Tour de Suisse"],
+      "correct": "Critérium du Dauphiné"
+    },
+    {
+      "question": "Welche österreichische Partei hat traditionell die Farbe Rot?",
+      "options": ["ÖVP", "FPÖ", "SPÖ"],
+      "correct": "SPÖ"
+    },
+    {
+      "question": "Welche Band sang 'Karma Police'?",
+      "options": ["Muse", "Radiohead", "The Verve"],
+      "correct": "Radiohead"
+    },
+    {
+      "question": "Was beschreibt 'Keyframing' in der Videobearbeitung?",
+      "options": [
+        "Das Setzen von Schlüsselbildern für Animations- und Effektänderungen",
+        "Das Löschen von Einzelbildern",
+        "Das Exportieren in ein bestimmtes Format"
+      ],
+      "correct": "Das Setzen von Schlüsselbildern für Animations- und Effektänderungen"
+    },
+    {
+      "question": "Was versteht man unter 'Aero-Position' beim Zeitfahren?",
+      "options": [
+        "Aufrechtes Sitzen",
+        "Liegeposition auf Aero-Lenkeraufsätzen",
+        "Stehen in den Pedalen"
+      ],
+      "correct": "Liegeposition auf Aero-Lenkeraufsätzen"
+    },
+    {
+      "question": "Welcher CS-Profi ist unter dem Namen 's1mple' bekannt und gilt als einer der besten Spieler aller Zeiten?",
+      "options": ["Oleksandr Kostyliev", "Nikola Kovač", "Denis Sharipov"],
+      "correct": "Oleksandr Kostyliev"
+    },
+    {
+      "question": "Welches Getränk heißt übersetzt 'Milchkaffee' und wird in Frankreich traditionell aus einer Schale getrunken?",
+      "options": ["Cappuccino", "Café au Lait", "Latte Macchiato"],
+      "correct": "Café au Lait"
+    },
+    {
+      "question": "Welcher österreichische Bundespräsident weigerte sich 1933, das Parlament wieder einzuberufen?",
+      "options": ["Karl Renner", "Wilhelm Miklas", "Theodor Körner"],
+      "correct": "Wilhelm Miklas"
+    },
+    {
+      "question": "Welches Spiel aus 1998 spielt in einem Science-Fiction-Universum mit Terranern, Zerg und Protoss?",
+      "options": ["Warcraft II", "StarCraft", "Command & Conquer"],
+      "correct": "StarCraft"
+    },
+    {
+      "question": "Welche Band veröffentlichte 'Wish You Were Here' als Tribut an Syd Barrett?",
+      "options": ["The Who", "Pink Floyd", "Genesis"],
+      "correct": "Pink Floyd"
+    },
+    {
+      "question": "Was versteht man unter 'Extraction' in der Kaffeezubereitung?",
+      "options": [
+        "Das Rösten der Bohnen",
+        "Das Lösen von Aromastoffen aus dem Kaffeemehl durch Wasser",
+        "Das Mahlen der Bohnen"
+      ],
+      "correct": "Das Lösen von Aromastoffen aus dem Kaffeemehl durch Wasser"
+    },
+    {
+      "question": "Welche Tennisspielerin gewann den 'Golden Slam' im Jahr 1988?",
+      "options": ["Martina Navrátilová", "Steffi Graf", "Monica Seles"],
+      "correct": "Steffi Graf"
+    },
+    {
+      "question": "Welche Band veröffentlichte das Debütalbum 'Appetite for Destruction'?",
+      "options": ["Mötley Crüe", "Guns N' Roses", "Def Leppard"],
+      "correct": "Guns N' Roses"
+    },
+    {
+      "question": "Was kostet eine M4A1-S in CS2?",
+      "options": ["$2.700", "$2.900", "$3.100"],
+      "correct": "$2.900"
+    },
+    {
+      "question": "Welches Getränk besteht aus Espresso, Schokolade und aufgeschäumter Milch?",
+      "options": ["Cappuccino", "Mocha", "Flat White"],
+      "correct": "Mocha"
+    },
+    {
+      "question": "Welches 90er-Spiel von Rare für das N64 gilt als Meilenstein des Multiplayer-Shooter-Genres?",
+      "options": ["Perfect Dark", "GoldenEye 007", "Turok"],
+      "correct": "GoldenEye 007"
+    },
+    {
+      "question": "Welche bildgebende Methode nutzt Magnetfelder statt Röntgenstrahlung?",
+      "options": ["CT", "PET", "MRT"],
+      "correct": "MRT"
+    },
+    {
+      "question": "Welche Band spielte das legendäre Rooftop-Konzert auf dem Apple-Building in London 1969?",
+      "options": ["The Rolling Stones", "The Beatles", "The Who"],
+      "correct": "The Beatles"
+    },
+    {
+      "question": "Wie heißt der Konsolenbefehl in CS2, mit dem man in der Übungskarte die Flugbahn von Granaten sehen kann?",
+      "options": [
+        "sv_grenade_trajectory",
+        "cl_grenade_preview",
+        "r_drawgrenades"
+      ],
+      "correct": "sv_grenade_trajectory"
+    },
+    {
+      "question": "Welcher österreichische Bundespräsident wurde 1986 trotz Kontroversen um seine Kriegsvergangenheit gewählt?",
+      "options": ["Thomas Klestil", "Kurt Waldheim", "Rudolf Kirchschläger"],
+      "correct": "Kurt Waldheim"
+    },
+    {
+      "question": "Welche Band sang 'Bittersweet Symphony'?",
+      "options": ["Oasis", "The Verve", "Blur"],
+      "correct": "The Verve"
+    },
+    {
+      "question": "Was beschreibt im Radsport ein 'Monument'?",
+      "options": [
+        "Einen Berganstieg der höchsten Kategorie",
+        "Eines der fünf prestigeträchtigsten Eintagesrennen",
+        "Den Startbogen eines Grand Tour"
+      ],
+      "correct": "Eines der fünf prestigeträchtigsten Eintagesrennen"
+    },
+    {
+      "question": "Wie heißt der CS2-Konsolenbefehl für unendliche Munition?",
+      "options": [
+        "sv_infinite_ammo 1",
+        "mp_unlimited_ammo 1",
+        "give_ammo infinite"
+      ],
+      "correct": "sv_infinite_ammo 1"
+    },
+    {
+      "question": "Welcher niederländische Radrennfahrer gewann 2024 die Weltmeisterschaft im Straßenrennen?",
+      "options": ["Wout van Aert", "Mathieu van der Poel", "Tom Dumoulin"],
+      "correct": "Mathieu van der Poel"
     }
   ]
 }

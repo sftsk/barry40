@@ -1,12 +1,13 @@
 {
-  "defaultCashBuilderTimeSeconds": 100,
-  "defaultChaseTimePerQuestionSeconds": 15,
+  "defaultCashBuilderMaxQuestions": 20,
+  "defaultCashBuilderTimeSeconds": 60,
+  "defaultChaseTimePerQuestionSeconds": 30,
   "defaultPartyMode": true,
-  "defaultChaserAccuracyPercentage": 75,
+  "defaultChaserAccuracyPercentage": 80,
   "defaultCashPerCorrectAnswer": 10,
   "defaultChaserRoundLength": 10,
   "defaultLastChanceLowerPct": 15,
   "defaultLastChanceUpperPct": 25,
-  "defaultHighOfferMultiplier": 2.2,
+  "defaultHighOfferMultiplier": 1.6,
   "defaultLowOfferMultiplier": 0.4
 }

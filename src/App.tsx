@@ -626,6 +626,9 @@ function MenuScreen({
   appSettings: AppSettings;
 }) {
   const [customSettings, setCustomSettings] = useState(() => ({
+    cashBuilderMaxQuestions:
+      config.settings?.cashBuilderMaxQuestions ??
+      appSettings.defaultCashBuilderMaxQuestions,
     cashBuilderTimeSeconds:
       config.settings?.cashBuilderTimeSeconds ??
       appSettings.defaultCashBuilderTimeSeconds,
@@ -856,7 +859,17 @@ function CashBuilderScreen({
   restoredSession: SessionSnapshot | null;
   isPaused?: boolean;
 }) {
-  const [qIndex, setQIndex] = useState(() => restoredSession?.qIndex ?? 0);
+  const questions = config.cashBuilder;
+  const poolLen = questions.length;
+  const rawCap = config.settings.cashBuilderMaxQuestions ?? poolLen;
+  const maxQuestions =
+    poolLen === 0 ? 0 : Math.min(poolLen, Math.max(1, rawCap));
+
+  const [qIndex, setQIndex] = useState(() => {
+    const r = restoredSession?.qIndex ?? 0;
+    if (maxQuestions <= 0) return 0;
+    return Math.min(r, maxQuestions - 1);
+  });
   const [bank, setBank] = useState(() => restoredSession?.bank ?? 0);
   const [isActive, setIsActive] = useState(true);
   const [showAnswer, setShowAnswer] = useState(() => restoredSession?.showAnswer ?? false);
@@ -885,7 +898,6 @@ function CashBuilderScreen({
     });
   }, [qIndex, bank, seconds, showAnswer, typedAnswer, isActive, onSaveSession]);
 
-  const questions = config.cashBuilder;
   const currentQ = questions[qIndex] || {
     question: "No more questions!",
     answer: "",
@@ -907,7 +919,7 @@ function CashBuilderScreen({
   };
 
   const nextQuestion = () => {
-    if (qIndex + 1 < questions.length) {
+    if (maxQuestions > 0 && qIndex + 1 < maxQuestions) {
       setQIndex((i) => i + 1);
       setShowAnswer(false);
       setTypedAnswer("");
@@ -944,6 +956,19 @@ function CashBuilderScreen({
             {eur.format(bank)}
           </div>
         </div>
+        {maxQuestions > 0 && (
+          <p
+            style={{
+              textAlign: "center",
+              marginTop: "0.5rem",
+              marginBottom: 0,
+              opacity: 0.85,
+              fontSize: "1rem",
+            }}
+          >
+            Question {qIndex + 1} / {maxQuestions}
+          </p>
+        )}
 
         {seconds > 0 ? (
           <div className="chase-questions text-center">

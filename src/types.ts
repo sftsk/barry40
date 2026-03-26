@@ -1,4 +1,5 @@
 export interface AppSettings {
+  defaultCashBuilderMaxQuestions: number;
   defaultCashBuilderTimeSeconds: number;
   defaultChaseTimePerQuestionSeconds: number;
   defaultPartyMode: boolean;
@@ -12,6 +13,7 @@ export interface AppSettings {
 }
 
 export interface GameSettings {
+  cashBuilderMaxQuestions?: number;
   cashBuilderTimeSeconds: number;
   chaseTimePerQuestionSeconds: number;
   partyMode: boolean;

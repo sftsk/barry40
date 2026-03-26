@@ -20,6 +20,10 @@
   --glass-blur: blur(12px);
 }
 
+html {
+  background-color: #0f172a;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
