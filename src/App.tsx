@@ -28,6 +28,54 @@ function useTimer(initialSeconds: number, onExpire: () => void, isActive: boolea
   return { seconds, setSeconds };
 }
 
+// -- Global Timer Border Component --
+function TimerBorder({ currentSeconds, totalSeconds }: { currentSeconds: number, totalSeconds: number }) {
+  const percentage = totalSeconds > 0 ? currentSeconds / totalSeconds : 0;
+  const hue = percentage * 120; // 120: green, 0: red
+  const color = `hsl(${hue}, 100%, 50%)`;
+  
+  const redBlur = 2 + (1 - percentage) * 15;
+  const orangeBlur = 5 + (1 - percentage) * 25;
+  const filter = percentage < 0.3 
+    ? `drop-shadow(0 0 ${redBlur}px red) drop-shadow(0 0 ${orangeBlur}px orange)` 
+    : `drop-shadow(0 0 5px ${color})`;
+
+  return (
+    <svg 
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      style={{ 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        width: '100dvw',
+        height: '100dvh',
+        pointerEvents: 'none', 
+        zIndex: 9999,
+        overflow: 'visible'
+      }}
+    >
+      <rect 
+        x="0" y="0" 
+        width="100" 
+        height="100" 
+        fill="none"
+        stroke={color} 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+        pathLength="100"
+        strokeDasharray="100" 
+        strokeDashoffset={100 - (percentage * 100)}
+        style={{ 
+          transition: 'stroke-dashoffset 1s linear, stroke 1s linear', 
+          filter
+        }} 
+      />
+    </svg>
+  );
+}
+
 // -- Main App Component --
 function App() {
   const [gameState, setGameState] = useState<GameState>({
@@ -39,7 +87,10 @@ function App() {
   });
 
   const [error, setError] = useState('');
-  const [jsonUrl, setJsonUrl] = useState('');
+  const [jsonUrl] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('quiz') || '/default_questions.json';
+  });
 
   const loadConfig = (url: string) => {
     fetch(url)
@@ -55,11 +106,8 @@ function App() {
   };
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const quizUrl = urlParams.get('quiz') || '/default_questions.json';
-    setJsonUrl(quizUrl);
-    loadConfig(quizUrl);
-  }, []);
+    loadConfig(jsonUrl);
+  }, [jsonUrl]);
 
   if (error && !gameState.config) {
     return (
@@ -80,7 +128,7 @@ function App() {
   }
 
   // --- Phase Handlers ---
-  const startGame = (customSettings: any) => {
+  const startGame = (customSettings: GameConfig['settings']) => {
     setGameState(s => ({ 
       ...s, 
       phase: 'CASH_BUILDER', 
@@ -99,7 +147,16 @@ function App() {
 
   return (
     <>
-      {gameState.phase === 'MENU' && <MenuScreen onStart={startGame} config={gameState.config} defaultUrl={jsonUrl} onLoadUrl={loadConfig} loadError={error}/>}
+      {gameState.phase === 'MENU' && gameState.config && (
+        <MenuScreen 
+          key={JSON.stringify(gameState.config.settings)}
+          onStart={startGame} 
+          config={gameState.config} 
+          defaultUrl={jsonUrl} 
+          onLoadUrl={loadConfig} 
+          loadError={error}
+        />
+      )}
       {gameState.phase === 'CASH_BUILDER' && <CashBuilderScreen config={gameState.config} onComplete={onCashBuilderComplete} />}
       {gameState.phase === 'CHASE_SETUP' && <ChaseSetupScreen bank={gameState.bank} onStart={startChase} />}
       {gameState.phase === 'THE_CHASE' && <TheChaseScreen config={gameState.config} bank={gameState.bank} gameState={gameState} setGameState={setGameState} onEnd={endGame} />}
@@ -110,14 +167,9 @@ function App() {
 
 // -- Sub Components --
 
-function MenuScreen({ onStart, config, defaultUrl, onLoadUrl, loadError }: { onStart: (s:any) => void, config: GameConfig, defaultUrl: string, onLoadUrl: (url: string) => void, loadError: string }) {
+function MenuScreen({ onStart, config, defaultUrl, onLoadUrl, loadError }: { onStart: (s: GameConfig['settings']) => void, config: GameConfig, defaultUrl: string, onLoadUrl: (url: string) => void, loadError: string }) {
   const [customSettings, setCustomSettings] = useState(config.settings);
   const [urlInput, setUrlInput] = useState(defaultUrl);
-
-  // Sync state if config reloads from URL successfully
-  useEffect(() => {
-    setCustomSettings(config.settings);
-  }, [config.settings]);
 
   return (
     <div className="glass-panel">
@@ -213,78 +265,81 @@ function CashBuilderScreen({ config, onComplete }: { config: GameConfig, onCompl
   const isExactMatch = typedAnswer.trim().toLowerCase() === currentQ.answer.toLowerCase();
 
   return (
-    <div className="glass-panel">
-      <div className="header-row">
-        <div className={`timer ${seconds <= 10 ? 'danger' : ''}`}>⏱ {Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</div>
-        <div className="bank"><span>Bank</span>£{bank.toLocaleString()}</div>
-      </div>
+    <>
+      <TimerBorder currentSeconds={seconds} totalSeconds={config.settings.cashBuilderTimeSeconds} />
+      <div className="glass-panel">
+        <div className="header-row">
+          <div className={`timer ${seconds <= 10 ? 'danger' : ''}`}>⏱ {Math.floor(seconds / 60)}:{(seconds % 60).toString().padStart(2, '0')}</div>
+          <div className="bank"><span>Bank</span>£{bank.toLocaleString()}</div>
+        </div>
 
-      {seconds > 0 ? (
-        <div className="chase-questions text-center">
-          <h2 style={{ fontSize: '2rem', marginBottom: '2rem' }}>{currentQ.question}</h2>
+        {seconds > 0 ? (
+          <div className="chase-questions text-center">
+            <h2 style={{ fontSize: '2rem', marginBottom: '2rem' }}>{currentQ.question}</h2>
 
-          {isPartyMode ? (
-            // PARTY MODE UI
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-              {!showAnswer ? (
-                <button className="btn btn-warning" onClick={() => { setShowAnswer(true); setIsActive(false); }} style={{ width: '100%' }}>Reveal Answer</button>
-              ) : (
-                <>
-                  <h3 style={{ color: 'var(--accent-primary)', fontSize: '1.5rem', marginBottom: '1rem' }}>Answer: {currentQ.answer}</h3>
-                  <div className="flex-row" style={{ width: '100%', justifyContent: 'center' }}>
-                    <button className="btn btn-success flex-1" onClick={handleCorrect}>✅ Correct</button>
-                    <button className="btn btn-danger flex-1" onClick={handleWrong}>❌ Wrong</button>
-                  </div>
-                </>
-              )}
-            </div>
-          ) : (
-            // TYPING MODE UI
-            <div>
-              {!showAnswer ? (
-                <form onSubmit={handleTypeSubmit}>
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    className="input-text"
-                    placeholder="Type your answer..."
-                    value={typedAnswer}
-                    onChange={e => setTypedAnswer(e.target.value)}
-                    disabled={!isActive}
-                  />
-                  <button type="submit" className="btn btn-primary" style={{ marginTop: '1rem', width: '100%' }} disabled={!typedAnswer.trim()}>Submit</button>
-                </form>
-              ) : (
-                <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '12px' }}>
-                  <p style={{marginBottom: '0.5rem'}}>You answered: <strong>{typedAnswer}</strong></p>
-                  <p>Correct answer: <strong style={{color: 'var(--success)'}}>{currentQ.answer}</strong></p>
-                  
-                  {isExactMatch ? (
-                    <div style={{marginTop: '1rem'}}>
-                      <h3 style={{color: 'var(--success)'}}>Perfect Match!</h3>
-                      <button className="btn btn-primary" style={{width: '100%', marginTop: '0.5rem'}} onClick={handleCorrect}>Next ➔</button>
+            {isPartyMode ? (
+              // PARTY MODE UI
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+                {!showAnswer ? (
+                  <button className="btn btn-warning" onClick={() => { setShowAnswer(true); setIsActive(false); }} style={{ width: '100%' }}>Reveal Answer</button>
+                ) : (
+                  <>
+                    <h3 style={{ color: 'var(--accent-primary)', fontSize: '1.5rem', marginBottom: '1rem' }}>Answer: {currentQ.answer}</h3>
+                    <div className="flex-row" style={{ width: '100%', justifyContent: 'center' }}>
+                      <button className="btn btn-success flex-1" onClick={handleCorrect}>✅ Correct</button>
+                      <button className="btn btn-danger flex-1" onClick={handleWrong}>❌ Wrong</button>
                     </div>
-                  ) : (
-                    <div style={{marginTop: '1rem'}}>
-                      <h3 style={{color: 'var(--danger)', marginBottom: '1rem'}}>Incorrect</h3>
-                      <div className="flex-row">
-                        <button className="btn btn-success flex-1" onClick={handleCorrect}>Actually, I was right</button>
-                        <button className="btn btn-danger flex-1" onClick={handleWrong}>Accept Wrong</button>
+                  </>
+                )}
+              </div>
+            ) : (
+              // TYPING MODE UI
+              <div>
+                {!showAnswer ? (
+                  <form onSubmit={handleTypeSubmit}>
+                    <input
+                      ref={inputRef}
+                      type="text"
+                      className="input-text"
+                      placeholder="Type your answer..."
+                      value={typedAnswer}
+                      onChange={e => setTypedAnswer(e.target.value)}
+                      disabled={!isActive}
+                    />
+                    <button type="submit" className="btn btn-primary" style={{ marginTop: '1rem', width: '100%' }} disabled={!typedAnswer.trim()}>Submit</button>
+                  </form>
+                ) : (
+                  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '12px' }}>
+                    <p style={{marginBottom: '0.5rem'}}>You answered: <strong>{typedAnswer}</strong></p>
+                    <p>Correct answer: <strong style={{color: 'var(--success)'}}>{currentQ.answer}</strong></p>
+                    
+                    {isExactMatch ? (
+                      <div style={{marginTop: '1rem'}}>
+                        <h3 style={{color: 'var(--success)'}}>Perfect Match!</h3>
+                        <button className="btn btn-primary" style={{width: '100%', marginTop: '0.5rem'}} onClick={handleCorrect}>Next ➔</button>
                       </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="text-center">
-          <h2 style={{ color: 'var(--danger)' }}>Time's Up!</h2>
-          <p>Total Bank: £{bank.toLocaleString()}</p>
-        </div>
-      )}
-    </div>
+                    ) : (
+                      <div style={{marginTop: '1rem'}}>
+                        <h3 style={{color: 'var(--danger)', marginBottom: '1rem'}}>Incorrect</h3>
+                        <div className="flex-row">
+                          <button className="btn btn-success flex-1" onClick={handleCorrect}>Actually, I was right</button>
+                          <button className="btn btn-danger flex-1" onClick={handleWrong}>Accept Wrong</button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-center">
+            <h2 style={{ color: 'var(--danger)' }}>Time's Up!</h2>
+            <p>Total Bank: £{bank.toLocaleString()}</p>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -368,8 +423,10 @@ function TheChaseScreen({ config, bank, gameState, setGameState, onEnd }: { conf
   };
 
   return (
-    <div className="glass-panel">
-       <div className="header-row" style={{marginBottom: '1rem'}}>
+    <>
+      <TimerBorder currentSeconds={seconds} totalSeconds={config.settings.chaseTimePerQuestionSeconds} />
+      <div className="glass-panel">
+         <div className="header-row" style={{marginBottom: '1rem'}}>
         <div className={`timer ${seconds <= 5 && !showResult ? 'danger' : ''}`}>⏱ {showResult ? '-' : seconds}</div>
         <div className="bank"><span>Playing For</span>£{bank.toLocaleString()}</div>
       </div>
@@ -437,7 +494,8 @@ function TheChaseScreen({ config, bank, gameState, setGameState, onEnd }: { conf
         </div>
       </div>
     </div>
-  )
+    </>
+  );
 }
 
 function EndScreen({ win, bank, onRestart }: { win: boolean, bank: number, onRestart: ()=>void }) {
