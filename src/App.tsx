@@ -39,27 +39,34 @@ function App() {
   });
 
   const [error, setError] = useState('');
+  const [jsonUrl, setJsonUrl] = useState('');
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const quizUrl = urlParams.get('quiz') || '/default_questions.json';
-    
-    fetch(quizUrl)
+  const loadConfig = (url: string) => {
+    fetch(url)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
       })
       .then((data: GameConfig) => {
         setGameState(s => ({ ...s, config: data }));
+        setError('');
       })
       .catch((e) => setError('Failed to load quiz config. ' + e.message));
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const quizUrl = urlParams.get('quiz') || '/default_questions.json';
+    setJsonUrl(quizUrl);
+    loadConfig(quizUrl);
   }, []);
 
-  if (error) {
+  if (error && !gameState.config) {
     return (
       <div className="glass-panel">
-        <h1>Error</h1>
+        <h1 style={{color: 'var(--danger)'}}>Error loading questions</h1>
         <p className="text-center">{error}</p>
+        <button className="btn btn-primary" onClick={() => window.location.href = '/'}>Retry Default</button>
       </div>
     );
   }
@@ -73,7 +80,18 @@ function App() {
   }
 
   // --- Phase Handlers ---
-  const startGame = () => setGameState(s => ({ ...s, phase: 'CASH_BUILDER', bank: 0 }));
+  const startGame = (customSettings: any) => {
+    setGameState(s => ({ 
+      ...s, 
+      phase: 'CASH_BUILDER', 
+      bank: 0,
+      config: {
+        ...s.config!,
+        settings: { ...s.config!.settings, ...customSettings }
+      }
+    }));
+  };
+
   const onCashBuilderComplete = (earned: number) => setGameState(s => ({ ...s, phase: 'CHASE_SETUP', bank: earned }));
   const startChase = () => setGameState(s => ({ ...s, phase: 'THE_CHASE', playerPos: 3, chaserPos: 0 }));
   const endGame = (win: boolean) => setGameState(s => ({ ...s, phase: win ? 'END_WIN' : 'END_LOSE' }));
@@ -81,7 +99,7 @@ function App() {
 
   return (
     <>
-      {gameState.phase === 'MENU' && <MenuScreen onStart={startGame} config={gameState.config} />}
+      {gameState.phase === 'MENU' && <MenuScreen onStart={startGame} config={gameState.config} defaultUrl={jsonUrl} onLoadUrl={loadConfig} loadError={error}/>}
       {gameState.phase === 'CASH_BUILDER' && <CashBuilderScreen config={gameState.config} onComplete={onCashBuilderComplete} />}
       {gameState.phase === 'CHASE_SETUP' && <ChaseSetupScreen bank={gameState.bank} onStart={startChase} />}
       {gameState.phase === 'THE_CHASE' && <TheChaseScreen config={gameState.config} bank={gameState.bank} gameState={gameState} setGameState={setGameState} onEnd={endGame} />}
@@ -92,21 +110,53 @@ function App() {
 
 // -- Sub Components --
 
-function MenuScreen({ onStart, config }: { onStart: () => void, config: GameConfig }) {
+function MenuScreen({ onStart, config, defaultUrl, onLoadUrl, loadError }: { onStart: (s:any) => void, config: GameConfig, defaultUrl: string, onLoadUrl: (url: string) => void, loadError: string }) {
+  const [customSettings, setCustomSettings] = useState(config.settings);
+  const [urlInput, setUrlInput] = useState(defaultUrl);
+
+  // Sync state if config reloads from URL successfully
+  useEffect(() => {
+    setCustomSettings(config.settings);
+  }, [config.settings]);
+
   return (
     <div className="glass-panel">
       <h1>The Chase</h1>
-      <p className="text-center">Welcome! Ready to face the Chaser?</p>
+      <p className="text-center">Welcome! Configure your game below.</p>
       
-      <div style={{ marginTop: '1rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px' }}>
-        <h3>Settings <span style={{fontSize:'0.9rem', color:'var(--text-muted)'}}>(Loaded from JSON)</span></h3>
-        <p>Mode: {config.settings.partyMode ? 'Party Mode (Host controls)' : 'Typing Mode'}</p>
-        <p>Cash Builder: {config.settings.cashBuilderTimeSeconds}s</p>
-        <p>Chase Timer: {config.settings.chaseTimePerQuestionSeconds}s per question</p>
+      <div style={{ marginTop: '1rem', background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+        
+        <div>
+           <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold'}}>Load Custom Questions (JSON URL):</label>
+           <div className="flex-row">
+             <input type="text" className="input-text" style={{flex: 1, padding: '0.5rem', fontSize: '1rem', textAlign: 'left'}} value={urlInput} onChange={e => setUrlInput(e.target.value)} />
+             <button className="btn btn-primary" style={{padding: '0.5rem 1rem'}} onClick={() => onLoadUrl(urlInput)}>Load</button>
+           </div>
+           {loadError && <p style={{color: 'var(--danger)', fontSize: '0.9rem', marginTop: '0.5rem'}}>{loadError}</p>}
+        </div>
+
+        <div style={{borderTop: '1px solid var(--panel-border)', paddingTop: '1.25rem'}}>
+          <label style={{display: 'block', marginBottom: '0.5rem', fontWeight: 'bold'}}>Game Rules:</label>
+          <div className="flex-row" style={{alignItems: 'center', marginBottom: '0.75rem'}}>
+            <label style={{flex: 2}}>Cash Builder Timer (s):</label>
+            <input type="number" className="input-text" style={{flex: 1, padding: '0.5rem', fontSize: '1.1rem'}} value={customSettings.cashBuilderTimeSeconds} onChange={e => setCustomSettings(s => ({...s, cashBuilderTimeSeconds: parseInt(e.target.value)}))} />
+          </div>
+          
+          <div className="flex-row" style={{alignItems: 'center', marginBottom: '0.75rem'}}>
+            <label style={{flex: 2}}>Chase Question Timer (s):</label>
+            <input type="number" className="input-text" style={{flex: 1, padding: '0.5rem', fontSize: '1.1rem'}} value={customSettings.chaseTimePerQuestionSeconds} onChange={e => setCustomSettings(s => ({...s, chaseTimePerQuestionSeconds: parseInt(e.target.value)}))} />
+          </div>
+          
+          <div className="flex-row" style={{alignItems: 'center'}}>
+               <label style={{flex: 2}}>Party Mode (Host grading):</label>
+               <input type="checkbox" style={{width: '24px', height: '24px', marginRight: '1rem'}} checked={customSettings.partyMode} onChange={e => setCustomSettings(s => ({...s, partyMode: e.target.checked}))} />
+          </div>
+        </div>
+
       </div>
 
-      <button className="btn btn-primary" onClick={onStart} style={{ marginTop: '1rem' }}>
-        Start Cash Builder
+      <button className="btn btn-primary" onClick={() => onStart(customSettings)} style={{ marginTop: '1rem' }}>
+        Start Game ➔
       </button>
     </div>
   );
@@ -147,6 +197,7 @@ function CashBuilderScreen({ config, onComplete }: { config: GameConfig, onCompl
       setQIndex(i => i + 1);
       setShowAnswer(false);
       setTypedAnswer('');
+      if (isPartyMode) setIsActive(true);
     } else {
       setIsActive(false);
       onComplete(bank);
@@ -176,7 +227,7 @@ function CashBuilderScreen({ config, onComplete }: { config: GameConfig, onCompl
             // PARTY MODE UI
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
               {!showAnswer ? (
-                <button className="btn btn-warning" onClick={() => setShowAnswer(true)} style={{ width: '100%' }}>Reveal Answer</button>
+                <button className="btn btn-warning" onClick={() => { setShowAnswer(true); setIsActive(false); }} style={{ width: '100%' }}>Reveal Answer</button>
               ) : (
                 <>
                   <h3 style={{ color: 'var(--accent-primary)', fontSize: '1.5rem', marginBottom: '1rem' }}>Answer: {currentQ.answer}</h3>
