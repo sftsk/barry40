@@ -1,0 +1,42 @@
+{
+  "settings": {
+    "cashBuilderTimeSeconds": 60,
+    "chaseTimePerQuestionSeconds": 15,
+    "partyMode": false,
+    "chaserAccuracyPercentage": 80
+  },
+  "cashBuilder": [
+    { "question": "What is the capital of France?", "answer": "Paris" },
+    { "question": "Who wrote 'Romeo and Juliet'?", "answer": "William Shakespeare" },
+    { "question": "What is the largest ocean on Earth?", "answer": "Pacific Ocean" },
+    { "question": "In what year did the Titanic sink?", "answer": "1912" },
+    { "question": "What is the chemical symbol for Gold?", "answer": "Au" }
+  ],
+  "theChase": [
+    { 
+      "question": "Which planet is closest to the Sun?", 
+      "options": ["Venus", "Mercury", "Mars"], 
+      "correct": "Mercury" 
+    },
+    { 
+      "question": "Who painted the Mona Lisa?", 
+      "options": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci"], 
+      "correct": "Leonardo da Vinci" 
+    },
+    { 
+      "question": "What is the hardest natural substance on Earth?", 
+      "options": ["Gold", "Iron", "Diamond"], 
+      "correct": "Diamond" 
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "options": ["Monaco", "Vatican City", "San Marino"],
+      "correct": "Vatican City"
+    },
+    {
+      "question": "Which element has the atomic number 1?",
+      "options": ["Helium", "Hydrogen", "Oxygen"],
+      "correct": "Hydrogen"
+    }
+  ]
+}
