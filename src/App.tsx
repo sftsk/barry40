@@ -1,5 +1,55 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import type { GameConfig, GameState, AppSettings } from "./types";
+
+const STORAGE_KEY = "barry40_session";
+
+interface SessionSnapshot {
+  gameState: GameState;
+  qIndex: number;
+  bank: number; // sub-screen bank (cash builder)
+  timerSeconds: number;
+  showAnswer?: boolean;
+  typedAnswer?: string;
+  selectedOpt?: string;
+  chaserOpt?: string;
+  showResult?: boolean;
+  isPlayerTurn?: boolean;
+  isPartyChaserTurn?: boolean;
+  chaserSelected?: boolean;
+  chaserCorrect?: boolean;
+}
+
+function saveSession(snap: SessionSnapshot) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(snap));
+  } catch {
+    // ignore
+  }
+}
+
+function loadSession(): SessionSnapshot | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const snap = JSON.parse(raw) as SessionSnapshot;
+    // Validate: must have config with settings (old/malformed sessions won't)
+    if (!snap?.gameState?.config?.settings) {
+      localStorage.removeItem(STORAGE_KEY);
+      return null;
+    }
+    return snap;
+  } catch {
+    return null;
+  }
+}
+
+function clearSession() {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+}
 
 const eur = new Intl.NumberFormat("de-DE", {
   style: "currency",
@@ -96,14 +146,81 @@ function TimerBorder({
   );
 }
 
+// -- Resume Confirmation Modal --
+function ResumeModal({ onYes, onNo }: { onYes: () => void; onNo: () => void }) {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.75)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 99999,
+      }}
+    >
+      <div
+        style={{
+          background: "#1e1e2e",
+          border: "1px solid var(--panel-border, rgba(255,255,255,0.1))",
+          borderRadius: "16px",
+          padding: "2.5rem",
+          maxWidth: "420px",
+          width: "90%",
+          textAlign: "center",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+        }}
+      >
+        <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>⏸️</div>
+        <h2 style={{ marginBottom: "0.5rem" }}>In the middle of a question</h2>
+        <p style={{ opacity: 0.7, marginBottom: "2rem" }}>
+          You have a game in progress. Would you like to continue where you left off?
+        </p>
+        <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+          <button className="btn btn-primary" style={{ flex: 1 }} onClick={onYes}>
+            Continue now
+          </button>
+          <button
+            className="btn"
+            style={{
+              flex: 1,
+              background: "rgba(255,255,255,0.08)",
+              border: "1px solid rgba(255,255,255,0.15)",
+            }}
+            onClick={onNo}
+          >
+            Start fresh
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // -- Main App Component --
 function App() {
-  const [gameState, setGameState] = useState<GameState>({
-    phase: "MENU",
-    bank: 0,
-    config: null,
-    playerPos: 3, // Start 3 steps down
-    chaserPos: 0, // Starts at 0
+  const savedSession = useRef<SessionSnapshot | null>(loadSession());
+  const [showResumeModal, setShowResumeModal] = useState<boolean>(() => {
+    const s = savedSession.current;
+    if (!s) return false;
+    const activePhases = ["CASH_BUILDER", "THE_CHASE"];
+    return activePhases.includes(s.gameState.phase) && s.timerSeconds > 0;
+  });
+  const [sessionToRestore, setSessionToRestore] = useState<SessionSnapshot | null>(
+    () => savedSession.current
+  );
+
+  const [gameState, setGameState] = useState<GameState>(() => {
+    const s = savedSession.current;
+    if (s) return s.gameState;
+    return {
+      phase: "MENU",
+      bank: 0,
+      config: null,
+      playerPos: 3,
+      chaserPos: 0,
+    };
   });
 
   const [error, setError] = useState("");
@@ -130,7 +247,12 @@ function App() {
       .then((data: GameConfig) => {
         setGameState((prev) => ({
           ...prev,
-          config: data,
+          config: {
+            ...data,
+            // Preserve existing settings if we're mid-game (e.g. restoring from localStorage)
+            // The raw JSON doesn't have merged settings; startGame puts them there.
+            settings: prev.config?.settings ?? data.settings,
+          },
         }));
         setError("");
         setJsonUrl(url);
@@ -149,6 +271,38 @@ function App() {
   useEffect(() => {
     loadConfig(jsonUrl);
   }, [jsonUrl]);
+
+  // Use a ref so onSaveSession always has access to the latest gameState
+  // without causing the callback to be recreated on every render.
+  const gameStateRef = useRef(gameState);
+  useEffect(() => {
+    gameStateRef.current = gameState;
+  });
+
+  const onSaveSession = useCallback(
+    (snap: Omit<SessionSnapshot, "gameState">) => {
+      saveSession({ ...snap, gameState: gameStateRef.current });
+    },
+    [] // stable — reads from ref
+  );
+
+  // Keep session up to date when gameState changes (for phases that don't re-save themselves)
+  useEffect(() => {
+    const phase = gameState.phase;
+    if (phase === "CHASE_SETUP" || phase === "MENU" || phase.startsWith("END_")) {
+      if (phase === "MENU" || phase.startsWith("END_")) {
+        clearSession();
+      } else {
+        saveSession({
+          gameState,
+          qIndex: 0,
+          bank: gameState.bank,
+          timerSeconds: 0,
+        });
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameState.phase]);
 
   if (error && !gameState.config) {
     return (
@@ -225,7 +379,9 @@ function App() {
     }));
   const endGame = (win: boolean) =>
     setGameState((s) => ({ ...s, phase: win ? "END_WIN" : "END_LOSE" }));
-  const restart = () =>
+  const restart = () => {
+    clearSession();
+    setSessionToRestore(null);
     setGameState((s) => ({
       ...s,
       phase: "MENU",
@@ -233,9 +389,31 @@ function App() {
       playerPos: 3,
       chaserPos: 0,
     }));
+  };
+
+  const handleResumeYes = () => {
+    setShowResumeModal(false);
+    // session stays in sessionToRestore; screens will pick it up
+  };
+
+  const handleResumeNo = () => {
+    clearSession();
+    setSessionToRestore(null);
+    setShowResumeModal(false);
+    setGameState({
+      phase: "MENU",
+      bank: 0,
+      config: gameState.config,
+      playerPos: 3,
+      chaserPos: 0,
+    });
+  };
 
   return (
     <>
+      {showResumeModal && (
+        <ResumeModal onYes={handleResumeYes} onNo={handleResumeNo} />
+      )}
       {gameState.phase === "MENU" && gameState.config && (
         <MenuScreen
           key={`${jsonUrl}-${JSON.stringify(gameState.config.settings)}`}
@@ -247,10 +425,12 @@ function App() {
           appSettings={appSettings}
         />
       )}
-      {gameState.phase === "CASH_BUILDER" && (
+      {gameState.phase === "CASH_BUILDER" && !showResumeModal && (
         <CashBuilderScreen
           config={gameState.config}
           onComplete={onCashBuilderComplete}
+          onSaveSession={onSaveSession}
+          restoredSession={sessionToRestore}
         />
       )}
       {gameState.phase === "CHASE_SETUP" && (
@@ -260,13 +440,15 @@ function App() {
           onStart={startChase}
         />
       )}
-      {gameState.phase === "THE_CHASE" && (
+      {gameState.phase === "THE_CHASE" && !showResumeModal && (
         <TheChaseScreen
           config={gameState.config}
           bank={gameState.bank}
           gameState={gameState}
           setGameState={setGameState}
           onEnd={endGame}
+          onSaveSession={onSaveSession}
+          restoredSession={sessionToRestore}
         />
       )}
       {gameState.phase.startsWith("END_") && (
@@ -522,25 +704,42 @@ function MenuScreen({
 function CashBuilderScreen({
   config,
   onComplete,
+  onSaveSession,
+  restoredSession,
 }: {
   config: GameConfig;
   onComplete: (bank: number) => void;
+  onSaveSession: (snap: Omit<SessionSnapshot, "gameState">) => void;
+  restoredSession: SessionSnapshot | null;
 }) {
-  const [qIndex, setQIndex] = useState(0);
-  const [bank, setBank] = useState(0);
+  const [qIndex, setQIndex] = useState(() => restoredSession?.qIndex ?? 0);
+  const [bank, setBank] = useState(() => restoredSession?.bank ?? 0);
   const [isActive, setIsActive] = useState(true);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [typedAnswer, setTypedAnswer] = useState("");
+  const [showAnswer, setShowAnswer] = useState(() => restoredSession?.showAnswer ?? false);
+  const [typedAnswer, setTypedAnswer] = useState(() => restoredSession?.typedAnswer ?? "");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const restoredSeconds = restoredSession?.timerSeconds ?? config.settings.cashBuilderTimeSeconds;
   const { seconds } = useTimer(
-    config.settings.cashBuilderTimeSeconds,
+    restoredSeconds,
     () => {
       setIsActive(false);
       setTimeout(() => onComplete(bank), 2000); // Wait 2s before transitioning
     },
     isActive,
   );
+
+  // Save session continuously
+  useEffect(() => {
+    if (!isActive) return;
+    onSaveSession({
+      qIndex,
+      bank,
+      timerSeconds: seconds,
+      showAnswer,
+      typedAnswer,
+    });
+  }, [qIndex, bank, seconds, showAnswer, typedAnswer, isActive, onSaveSession]);
 
   const questions = config.cashBuilder;
   const currentQ = questions[qIndex] || {
@@ -873,21 +1072,25 @@ function TheChaseScreen({
   gameState,
   setGameState,
   onEnd,
+  onSaveSession,
+  restoredSession,
 }: {
   config: GameConfig;
   bank: number;
   gameState: GameState;
   setGameState: React.Dispatch<React.SetStateAction<GameState>>;
   onEnd: (w: boolean) => void;
+  onSaveSession: (snap: Omit<SessionSnapshot, "gameState">) => void;
+  restoredSession: SessionSnapshot | null;
 }) {
-  const [qIndex, setQIndex] = useState(0);
-  const [selectedOpt, setSelectedOpt] = useState("");
-  const [chaserSelected, setChaserSelected] = useState(false);
-  const [chaserCorrect, setChaserCorrect] = useState(false);
-  const [chaserOpt, setChaserOpt] = useState("");
-  const [showResult, setShowResult] = useState(false);
-  const [isPlayerTurn, setIsPlayerTurn] = useState(true);
-  const [isPartyChaserTurn, setIsPartyChaserTurn] = useState(false);
+  const [qIndex, setQIndex] = useState(() => restoredSession?.qIndex ?? 0);
+  const [selectedOpt, setSelectedOpt] = useState(() => restoredSession?.selectedOpt ?? "");
+  const [chaserSelected, setChaserSelected] = useState(() => restoredSession?.chaserSelected ?? false);
+  const [chaserCorrect, setChaserCorrect] = useState(() => restoredSession?.chaserCorrect ?? false);
+  const [chaserOpt, setChaserOpt] = useState(() => restoredSession?.chaserOpt ?? "");
+  const [showResult, setShowResult] = useState(() => restoredSession?.showResult ?? false);
+  const [isPlayerTurn, setIsPlayerTurn] = useState(() => restoredSession?.isPlayerTurn ?? true);
+  const [isPartyChaserTurn, setIsPartyChaserTurn] = useState(() => restoredSession?.isPartyChaserTurn ?? false);
 
   const questions = config.theChase;
   const currentQ = questions[qIndex];
@@ -934,13 +1137,31 @@ function TheChaseScreen({
 
   const onExpireRef = useRef<(() => void) | null>(null);
 
+  const restoredChaseSeconds =
+    restoredSession?.timerSeconds ?? config.settings.chaseTimePerQuestionSeconds;
   const { seconds, setSeconds } = useTimer(
-    config.settings.chaseTimePerQuestionSeconds,
+    restoredChaseSeconds,
     () => {
       if (onExpireRef.current) onExpireRef.current();
     },
     !showResult && (isPlayerTurn || isPartyChaserTurn),
   );
+
+  // Save session continuously
+  useEffect(() => {
+    onSaveSession({
+      qIndex,
+      bank,
+      timerSeconds: seconds,
+      selectedOpt,
+      chaserOpt,
+      showResult,
+      isPlayerTurn,
+      isPartyChaserTurn,
+      chaserSelected,
+      chaserCorrect,
+    });
+  }, [qIndex, bank, seconds, selectedOpt, chaserOpt, showResult, isPlayerTurn, isPartyChaserTurn, chaserSelected, chaserCorrect, onSaveSession]);
 
   useEffect(() => {
     onExpireRef.current = () => {

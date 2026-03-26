@@ -2,7 +2,7 @@
   "defaultCashBuilderTimeSeconds": 100,
   "defaultChaseTimePerQuestionSeconds": 15,
   "defaultPartyMode": true,
-  "defaultChaserAccuracyPercentage": 85,
+  "defaultChaserAccuracyPercentage": 75,
   "defaultCashPerCorrectAnswer": 10,
   "defaultChaserRoundLength": 10
 }

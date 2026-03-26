@@ -3,7 +3,7 @@
     "cashBuilderTimeSeconds": 60,
     "chaseTimePerQuestionSeconds": 15,
     "partyMode": false,
-    "chaserAccuracyPercentage": 80
+    "chaserAccuracyPercentage": 60
   },
   "cashBuilder": [
     {

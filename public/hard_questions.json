@@ -1,0 +1,348 @@
+{
+  "cashBuilder": [
+    {
+      "question": "Wie heißt das Zeitfahren, das traditionell die letzte Etappe der Giro d'Italia bildet?",
+      "answer": "Cronometro (Einzelzeitfahren)"
+    },
+    {
+      "question": "Welche chemische Verbindung ist für den bitteren Geschmack im Kaffee hauptverantwortlich?",
+      "answer": "Chlorogensäure"
+    },
+    {
+      "question": "Wie heißt das Anti-Cheat-System von Valve, das in Counter-Strike eingesetzt wird?",
+      "answer": "VAC (Valve Anti-Cheat)"
+    },
+    {
+      "question": "Welcher Friedensvertrag beendete 1713 den Spanischen Erbfolgekrieg?",
+      "answer": "Der Friede von Utrecht"
+    },
+    {
+      "question": "Wie heißt das Teilchen, das 2012 am CERN nachgewiesen wurde und Elementarteilchen ihre Masse verleiht?",
+      "answer": "Das Higgs-Boson"
+    },
+    {
+      "question": "Welches Enzym spaltet im menschlichen Magen Proteine?",
+      "answer": "Pepsin"
+    },
+    {
+      "question": "Wie heißt der Prozess, bei dem Zellen ohne Sauerstoff Energie gewinnen?",
+      "answer": "Anaerobe Glykolyse bzw. Gärung"
+    },
+    {
+      "question": "Welcher österreichische Vizekanzler trat 2019 nach dem Ibiza-Skandal zurück?",
+      "answer": "Heinz-Christian Strache"
+    },
+    {
+      "question": "Welches Architekturbüro entwarf die Rotterdamer Markthalle?",
+      "answer": "MVRDV"
+    },
+    {
+      "question": "Welches 1994 erschienene Spiel von Looking Glass Studios gilt als Wegbereiter des Immersive-Sim-Genres?",
+      "answer": "System Shock"
+    },
+    {
+      "question": "In welchem Kubrick-Film werden ausschließlich Kerzen und natürliches Licht für Innenszenen verwendet?",
+      "answer": "Barry Lyndon"
+    },
+    {
+      "question": "Was beschreibt der Wert 'f/0.7' an einem Objektiv?",
+      "answer": "Eine extrem große Blendenöffnung (extrem lichtstark)"
+    },
+    {
+      "question": "Was versteht man in der Videobearbeitung unter einer 'LUT'?",
+      "answer": "Look-Up Table – eine Farbumrechnungstabelle"
+    },
+    {
+      "question": "Wie heißt das Maß für den Rollwiderstand eines Fahrradreifens?",
+      "answer": "Crr (Coefficient of Rolling Resistance)"
+    },
+    {
+      "question": "Was versteht man unter 'Channeling' bei der Espressozubereitung?",
+      "answer": "Ungleichmäßiger Wasserdurchfluss durch das Kaffeemehl"
+    },
+    {
+      "question": "Welche Counter-Strike-Map spielt in einem kubanischen Hafenviertel?",
+      "answer": "Havana"
+    },
+    {
+      "question": "Welche Schlacht von 1683 beendete die osmanische Belagerung Wiens?",
+      "answer": "Die Schlacht am Kahlenberg"
+    },
+    {
+      "question": "Was beschreibt die Drake-Gleichung?",
+      "answer": "Eine Abschätzung der Anzahl kontaktfähiger Zivilisationen in der Milchstraße"
+    },
+    {
+      "question": "Wie heißt der programmierte Zelltod in der Biologie?",
+      "answer": "Apoptose"
+    },
+    {
+      "question": "Wie heißt das System der österreichischen Sozialpartnerschaft?",
+      "answer": "Paritätische Kommission"
+    },
+    {
+      "question": "Wie heißt der Rotterdamer Stadtteil mit den berühmten Kubushäusern von Piet Blom?",
+      "answer": "Blaak"
+    },
+    {
+      "question": "Welches 1993 erschienene Point-and-Click-Adventure von Cyan Worlds spielt auf einer mysteriösen Insel?",
+      "answer": "Myst"
+    },
+    {
+      "question": "Welche Erzähltechnik machte Kubricks 'The Killing' von 1956 zu einem Meilenstein des Film Noir?",
+      "answer": "Nicht-lineare Erzählstruktur"
+    },
+    {
+      "question": "Was besagt die Sunny-16-Regel in der Fotografie?",
+      "answer": "Bei Sonnenschein Blende 16 und Verschlusszeit entspricht 1/ISO"
+    },
+    {
+      "question": "Was versteht man unter einer 'Nested Sequence' in Premiere Pro?",
+      "answer": "Eine Sequenz, die als Clip in einer anderen Sequenz verschachtelt ist"
+    },
+    {
+      "question": "Welcher Radprofi wurde als 'Der Kannibale' bezeichnet?",
+      "answer": "Eddy Merckx"
+    },
+    {
+      "question": "Was beschreibt ein 'Q-Grader' in der Kaffeewelt?",
+      "answer": "Ein zertifizierter Kaffeeverkoster nach SCA-Standard"
+    },
+    {
+      "question": "Welcher Arzt entdeckte 1928 zufällig das Penicillin?",
+      "answer": "Alexander Fleming"
+    },
+    {
+      "question": "Welches biologische Phänomen beschreibt 'Pleiotropie'?",
+      "answer": "Ein einzelnes Gen beeinflusst mehrere Merkmale"
+    },
+    {
+      "question": "Wie heißt der Hafen-Erneuerungsbezirk auf der ehemaligen Werftinsel in Rotterdam?",
+      "answer": "Kop van Zuid"
+    },
+    {
+      "question": "Welcher Kubrick-Film war gleichzeitig sein letzter und hatte seine Premiere nach seinem Tod?",
+      "answer": "Eyes Wide Shut"
+    }
+  ],
+  "theChase": [
+    {
+      "question": "Welcher Radrennfahrer gewann zwischen 1991 und 1995 fünfmal in Folge die Tour de France?",
+      "options": ["Bernard Hinault", "Miguel Indurain", "Jan Ullrich"],
+      "correct": "Miguel Indurain"
+    },
+    {
+      "question": "Welche Aufbereitungsmethode für Rohkaffee wird auch 'natural processing' genannt?",
+      "options": ["Washed", "Dry/Natural", "Honey"],
+      "correct": "Dry/Natural"
+    },
+    {
+      "question": "Welcher Counter-Strike-Profi war unter dem Alias 'f0rest' bekannt und spielte jahrelang für NiP?",
+      "options": ["Patrik Lindberg", "Christopher Alesund", "Olof Kajbjer"],
+      "correct": "Patrik Lindberg"
+    },
+    {
+      "question": "Welches europäische Königshaus regierte fast ununterbrochen von 1438 bis 1806 über das Heilige Römische Reich?",
+      "options": ["Bourbon", "Habsburg", "Wittelsbach"],
+      "correct": "Habsburg"
+    },
+    {
+      "question": "Was beschreibt die Heisenbergsche Unschärferelation?",
+      "options": [
+        "Ort und Impuls eines Teilchens sind nicht gleichzeitig beliebig genau bestimmbar",
+        "Energie kann nicht erzeugt oder vernichtet werden",
+        "Licht verhält sich gleichzeitig als Welle und Teilchen"
+      ],
+      "correct": "Ort und Impuls eines Teilchens sind nicht gleichzeitig beliebig genau bestimmbar"
+    },
+    {
+      "question": "Was beschreibt der medizinische Begriff 'Tachykardie'?",
+      "options": [
+        "Zu niedriger Blutdruck",
+        "Zu schneller Herzschlag",
+        "Unregelmäßiger Herzrhythmus"
+      ],
+      "correct": "Zu schneller Herzschlag"
+    },
+    {
+      "question": "Was beschreibt der Begriff 'CRISPR-Cas9' in der Biologie?",
+      "options": [
+        "Ein Verfahren zur Zellkultivierung",
+        "Eine Genschere zur gezielten DNA-Bearbeitung",
+        "Ein Protein zur Immunabwehr"
+      ],
+      "correct": "Eine Genschere zur gezielten DNA-Bearbeitung"
+    },
+    {
+      "question": "Welcher österreichische Bundeskanzler löste 2017 Neuwahlen aus und wurde danach jüngster Regierungschef Europas?",
+      "options": ["Werner Faymann", "Sebastian Kurz", "Christian Kern"],
+      "correct": "Sebastian Kurz"
+    },
+    {
+      "question": "Welcher Architekt entwarf die Kunsthal in Rotterdam?",
+      "options": ["Rem Koolhaas", "Renzo Piano", "Piet Blom"],
+      "correct": "Rem Koolhaas"
+    },
+    {
+      "question": "Welches 1997 erschienene Echtzeit-Strategiespiel ist für seine extrem schwierigen Missionen im Zweiten Weltkrieg bekannt?",
+      "options": [
+        "Age of Empires",
+        "Commandos: Behind Enemy Lines",
+        "Close Combat"
+      ],
+      "correct": "Commandos: Behind Enemy Lines"
+    },
+    {
+      "question": "Welches spezielle Objektiv nutzte Kubrick für die Kerzenszenen in 'Barry Lyndon'?",
+      "options": [
+        "Leica Summicron 35mm",
+        "Zeiss Planar 50mm f/0.7",
+        "Nikon Nikkor 55mm f/1.2"
+      ],
+      "correct": "Zeiss Planar 50mm f/0.7"
+    },
+    {
+      "question": "Was beschreibt die 'hyperfokale Distanz' in der Fotografie?",
+      "options": [
+        "Die kürzeste Fokussierdistanz eines Objektivs",
+        "Die Entfernung, ab der alles bis unendlich scharf abgebildet wird",
+        "Der maximale Zoombereich"
+      ],
+      "correct": "Die Entfernung, ab der alles bis unendlich scharf abgebildet wird"
+    },
+    {
+      "question": "Welcher Codec wird im professionellen Videoschnitt häufig als Zwischenformat verwendet?",
+      "options": ["H.264", "Apple ProRes", "VP9"],
+      "correct": "Apple ProRes"
+    },
+    {
+      "question": "Was beschreibt den 'Peloton-Effekt' beim Radfahren?",
+      "options": [
+        "Höherer Luftwiderstand in der Gruppe",
+        "Energieersparnis von bis zu 40% im Windschatten der Gruppe",
+        "Beschleunigung beim Bergabfahren"
+      ],
+      "correct": "Energieersparnis von bis zu 40% im Windschatten der Gruppe"
+    },
+    {
+      "question": "Was misst ein Refraktometer bei der Kaffeezubereitung?",
+      "options": [
+        "Die Wassertemperatur",
+        "Die Konzentration gelöster Stoffe (TDS)",
+        "Den pH-Wert des Kaffees"
+      ],
+      "correct": "Die Konzentration gelöster Stoffe (TDS)"
+    },
+    {
+      "question": "Welches Counter-Strike-Team gewann das erste CS:GO-Major in Jönköping 2013?",
+      "options": ["Ninjas in Pyjamas", "Fnatic", "Virtus.pro"],
+      "correct": "Fnatic"
+    },
+    {
+      "question": "Welcher Kongress ordnete Europa nach den Napoleonischen Kriegen 1814/1815 neu?",
+      "options": [
+        "Kongress von Aachen",
+        "Wiener Kongress",
+        "Berliner Kongress"
+      ],
+      "correct": "Wiener Kongress"
+    },
+    {
+      "question": "Welche Kraft hält die Quarks in Protonen und Neutronen zusammen?",
+      "options": [
+        "Elektromagnetische Kraft",
+        "Starke Kernkraft",
+        "Schwache Kernkraft"
+      ],
+      "correct": "Starke Kernkraft"
+    },
+    {
+      "question": "Was beschreibt der Glasgow-Coma-Scale?",
+      "options": [
+        "Den Schweregrad einer Depression",
+        "Den Bewusstseinsgrad eines Patienten nach Hirnverletzung",
+        "Die Stufe einer Narkose"
+      ],
+      "correct": "Den Bewusstseinsgrad eines Patienten nach Hirnverletzung"
+    },
+    {
+      "question": "Was beschreibt 'epigenetische Vererbung'?",
+      "options": [
+        "Vererbung durch Mutationen in der DNA-Sequenz",
+        "Vererbung von Genaktivierungsmustern ohne Änderung der DNA-Sequenz",
+        "Vererbung über mitochondriale DNA"
+      ],
+      "correct": "Vererbung von Genaktivierungsmustern ohne Änderung der DNA-Sequenz"
+    },
+    {
+      "question": "Welche österreichische Partei wurde 2012 von Frank Stronach gegründet und zog 2013 ins Parlament ein?",
+      "options": ["NEOS", "Team Stronach", "BZÖ"],
+      "correct": "Team Stronach"
+    },
+    {
+      "question": "Welche Stadt wurde beim deutschen Bombardement im Mai 1940 fast vollständig zerstört?",
+      "options": ["Amsterdam", "Rotterdam", "Den Haag"],
+      "correct": "Rotterdam"
+    },
+    {
+      "question": "Welches Spiel von Origin Systems ließ den Spieler 1994 mit realen Schauspielern wie Mark Hamill feindliche Kilrathi im Weltraum bekämpfen?",
+      "options": ["Freelancer", "Wing Commander III", "Descent"],
+      "correct": "Wing Commander III"
+    },
+    {
+      "question": "In welchem Kubrick-Film basiert die Handlung auf einem Roman von Arthur C. Clarke?",
+      "options": [
+        "A Clockwork Orange",
+        "2001: Odyssee im Weltraum",
+        "Full Metal Jacket"
+      ],
+      "correct": "2001: Odyssee im Weltraum"
+    },
+    {
+      "question": "Was beschreibt der 'Circle of Confusion' in der Fotografie?",
+      "options": [
+        "Den Bildkreis eines Objektivs",
+        "Den maximalen Unschärfepunkt, der noch als scharf wahrgenommen wird",
+        "Die chromatische Aberration"
+      ],
+      "correct": "Den maximalen Unschärfepunkt, der noch als scharf wahrgenommen wird"
+    },
+    {
+      "question": "Was beschreibt die 'Bitrate' bei einer Videoaufnahme?",
+      "options": [
+        "Die Anzahl der Farben pro Pixel",
+        "Die Datenmenge pro Zeiteinheit",
+        "Die Auflösung des Sensors"
+      ],
+      "correct": "Die Datenmenge pro Zeiteinheit"
+    },
+    {
+      "question": "Welches Material wird bei modernen Rennrad-Rahmen am häufigsten für Profi-Räder verwendet?",
+      "options": ["Aluminium", "Titan", "Carbon"],
+      "correct": "Carbon"
+    },
+    {
+      "question": "Was beschreibt 'RDT' (Ross Droplet Technique) in der Specialty-Coffee-Szene?",
+      "options": [
+        "Eine Methode zum Entkalken der Mühle",
+        "Wassertropfen auf Bohnen vor dem Mahlen gegen Statik",
+        "Eine Brühmethode mit Tröpfchenbewässerung"
+      ],
+      "correct": "Wassertropfen auf Bohnen vor dem Mahlen gegen Statik"
+    },
+    {
+      "question": "Welches Phänomen beschreibt die 'Blut-Hirn-Schranke'?",
+      "options": [
+        "Die Trennung von arteriellem und venösem Blut",
+        "Eine selektive Barriere zwischen Blutkreislauf und Gehirngewebe",
+        "Die Verbindung zwischen linker und rechter Gehirnhälfte"
+      ],
+      "correct": "Eine selektive Barriere zwischen Blutkreislauf und Gehirngewebe"
+    },
+    {
+      "question": "Welches 90er-Jahre-Spiel von Bullfrog Productions ließ den Spieler als böser Dungeon-Herrscher Helden bekämpfen?",
+      "options": ["Theme Hospital", "Dungeon Keeper", "Populous"],
+      "correct": "Dungeon Keeper"
+    }
+  ]
+}
