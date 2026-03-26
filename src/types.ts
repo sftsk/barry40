@@ -5,6 +5,8 @@ export interface AppSettings {
   defaultChaserAccuracyPercentage: number;
   defaultCashPerCorrectAnswer: number;
   defaultChaserRoundLength: number;
+  defaultLastChanceLowerPct: number;
+  defaultLastChanceUpperPct: number;
 }
 
 export interface GameSettings {
@@ -14,6 +16,8 @@ export interface GameSettings {
   chaserAccuracyPercentage: number;
   cashPerCorrectAnswer?: number;
   chaserRoundLength?: number;
+  lastChanceLowerPct?: number;
+  lastChanceUpperPct?: number;
 }
 
 export interface CashBuilderQuestion {
@@ -33,7 +37,7 @@ export interface GameConfig {
   theChase: ChaseQuestion[];
 }
 
-export type GamePhase = 'MENU' | 'CASH_BUILDER' | 'CHASE_SETUP' | 'THE_CHASE' | 'END_WIN' | 'END_LOSE';
+export type GamePhase = 'MENU' | 'CASH_BUILDER' | 'CHASE_SETUP' | 'THE_CHASE' | 'END_WIN' | 'END_LOSE' | 'LAST_CHANCE';
 
 export interface GameState {
   phase: GamePhase;

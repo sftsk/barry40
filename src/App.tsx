@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import type { GameConfig, GameState, AppSettings } from "./types";
+import { ArrowRight, Check, X } from "tabler-icons-react";
 
 const STORAGE_KEY = "barry40_session";
 
@@ -146,6 +147,107 @@ function TimerBorder({
   );
 }
 
+// -- Shake-to-Pause Hook --
+function useShakeToPause(enabled: boolean, onShake: () => void) {
+  const lastShake = useRef(0);
+  const onShakeRef = useRef(onShake);
+
+  useEffect(() => {
+    onShakeRef.current = onShake;
+  }, [onShake]);
+
+  useEffect(() => {
+    if (!enabled) return;
+    if (typeof DeviceMotionEvent === "undefined") return;
+
+    const THRESHOLD = 15; // m/s²
+    const COOLDOWN = 2000; // ms between triggers
+
+    const handleMotion = (e: DeviceMotionEvent) => {
+      const acc = e.accelerationIncludingGravity;
+      if (!acc) return;
+      const { x, y, z } = acc;
+      if (x === null || y === null || z === null) return;
+      const magnitude = Math.sqrt(x * x + y * y + z * z);
+      const now = Date.now();
+      if (magnitude > THRESHOLD && now - lastShake.current > COOLDOWN) {
+        lastShake.current = now;
+        onShakeRef.current();
+      }
+    };
+
+    const DM = DeviceMotionEvent as unknown as { requestPermission?: () => Promise<string> };
+    if (typeof DM.requestPermission === "function") {
+      // iOS 13+: must request inside a user gesture — hook onto first touchend
+      const requestOnGesture = () => {
+        DM.requestPermission!()
+          .then((perm) => {
+            if (perm === "granted") window.addEventListener("devicemotion", handleMotion);
+          })
+          .catch(() => {});
+      };
+      window.addEventListener("touchend", requestOnGesture, { once: true });
+      return () => {
+        window.removeEventListener("touchend", requestOnGesture);
+        window.removeEventListener("devicemotion", handleMotion);
+      };
+    }
+
+    window.addEventListener("devicemotion", handleMotion);
+    return () => window.removeEventListener("devicemotion", handleMotion);
+  }, [enabled]);
+}
+
+// -- Pause Modal (shake-triggered) --
+function PauseModal({ onResume, onQuit }: { onResume: () => void; onQuit: () => void }) {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.75)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 99999,
+      }}
+    >
+      <div
+        style={{
+          background: "#1e1e2e",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: "16px",
+          padding: "2.5rem",
+          maxWidth: "420px",
+          width: "90%",
+          textAlign: "center",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+        }}
+      >
+        <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>⏸️</div>
+        <h2 style={{ marginBottom: "0.5rem" }}>Game Paused</h2>
+        <p style={{ opacity: 0.7, marginBottom: "2rem" }}>Shake detected. Ready to continue?</p>
+        <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+          <button className="btn btn-primary" style={{ flex: 1 }} onClick={onResume}>
+            Resume
+          </button>
+          <button
+            className="btn"
+            style={{
+              flex: 1,
+              background: "rgba(255,255,255,0.08)",
+              border: "1px solid rgba(255,255,255,0.15)",
+            }}
+            onClick={onQuit}
+          >
+            Quit game
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // -- Resume Confirmation Modal --
 function ResumeModal({ onYes, onNo }: { onYes: () => void; onNo: () => void }) {
   return (
@@ -214,6 +316,11 @@ function App() {
   const [gameState, setGameState] = useState<GameState>(() => {
     const s = savedSession.current;
     if (s) return s.gameState;
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("loser")) {
+      const amount = parseInt(urlParams.get("loser") || "") || 800;
+      return { phase: "LAST_CHANCE", bank: amount, config: null, playerPos: 3, chaserPos: 0 };
+    }
     return {
       phase: "MENU",
       bank: 0,
@@ -222,6 +329,21 @@ function App() {
       chaserPos: 0,
     };
   });
+
+  const [showPauseModal, setShowPauseModal] = useState(false);
+
+  const activeGamePhases = ["CASH_BUILDER", "THE_CHASE"];
+  useShakeToPause(
+    activeGamePhases.includes(gameState.phase) && !showResumeModal,
+    useCallback(() => setShowPauseModal(true), []),
+  );
+
+  const handlePauseResume = useCallback(() => setShowPauseModal(false), []);
+  const handlePauseQuit = useCallback(() => {
+    clearSession();
+    setShowPauseModal(false);
+    setGameState((prev) => ({ phase: "MENU", bank: 0, config: prev.config, playerPos: 3, chaserPos: 0 }));
+  }, []);
 
   const [error, setError] = useState("");
   const [toastMsg, setToastMsg] = useState("");
@@ -245,10 +367,22 @@ function App() {
         return res.json();
       })
       .then((data: GameConfig) => {
+        const randomizedBuilder = [...data.cashBuilder];
+        const randomizedTheChase = [...data.theChase];
+        for (let i = randomizedBuilder.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [randomizedBuilder[i], randomizedBuilder[j]] = [randomizedBuilder[j], randomizedBuilder[i]];
+        }
+        for (let i = randomizedTheChase.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [randomizedTheChase[i], randomizedTheChase[j]] = [randomizedTheChase[j], randomizedTheChase[i]];
+        }
         setGameState((prev) => ({
           ...prev,
           config: {
             ...data,
+            cashBuilder: randomizedBuilder,
+            theChase: randomizedTheChase,
             // Preserve existing settings if we're mid-game (e.g. restoring from localStorage)
             // The raw JSON doesn't have merged settings; startGame puts them there.
             settings: prev.config?.settings ?? data.settings,
@@ -319,7 +453,7 @@ function App() {
     );
   }
 
-  if (!gameState.config || !appSettings) {
+  if ((!gameState.config || !appSettings) && gameState.phase !== "LAST_CHANCE") {
     return (
       <div className="glass-panel">
         <h1>Loading...</h1>
@@ -327,35 +461,15 @@ function App() {
     );
   }
 
-  // --- Helper to shuffle arrays ---
-  const shuffleArray = <T,>(arr: T[]): T[] => {
-    const copy = [...arr];
-    for (let i = copy.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
-  };
-
   // --- Phase Handlers ---
   const startGame = (customSettings: GameConfig["settings"]) => {
     setGameState((s) => {
-      // Shuffle both question sets on new game start
-      const randomizedBuilder = s.config
-        ? shuffleArray(s.config.cashBuilder)
-        : [];
-      const randomizedTheChase = s.config
-        ? shuffleArray(s.config.theChase)
-        : [];
-
       return {
         ...s,
         phase: "CASH_BUILDER",
         bank: 0,
         config: {
           ...s.config!,
-          cashBuilder: randomizedBuilder,
-          theChase: randomizedTheChase,
           settings: { ...s.config!.settings, ...customSettings },
         },
       };
@@ -378,7 +492,7 @@ function App() {
       activeAccuracy: offer.activeAccuracy,
     }));
   const endGame = (win: boolean) =>
-    setGameState((s) => ({ ...s, phase: win ? "END_WIN" : "END_LOSE" }));
+    setGameState((s) => ({ ...s, phase: win ? "END_WIN" : "LAST_CHANCE" }));
   const restart = () => {
     clearSession();
     setSessionToRestore(null);
@@ -414,7 +528,10 @@ function App() {
       {showResumeModal && (
         <ResumeModal onYes={handleResumeYes} onNo={handleResumeNo} />
       )}
-      {gameState.phase === "MENU" && gameState.config && (
+      {showPauseModal && (
+        <PauseModal onResume={handlePauseResume} onQuit={handlePauseQuit} />
+      )}
+      {gameState.phase === "MENU" && gameState.config && appSettings && (
         <MenuScreen
           key={`${jsonUrl}-${JSON.stringify(gameState.config.settings)}`}
           onStart={startGame}
@@ -425,22 +542,23 @@ function App() {
           appSettings={appSettings}
         />
       )}
-      {gameState.phase === "CASH_BUILDER" && !showResumeModal && (
+      {gameState.phase === "CASH_BUILDER" && !showResumeModal && gameState.config && (
         <CashBuilderScreen
           config={gameState.config}
           onComplete={onCashBuilderComplete}
           onSaveSession={onSaveSession}
           restoredSession={sessionToRestore}
+          isPaused={showPauseModal}
         />
       )}
-      {gameState.phase === "CHASE_SETUP" && (
+      {gameState.phase === "CHASE_SETUP" && gameState.config && (
         <ChaseSetupScreen
           config={gameState.config}
           bank={gameState.bank}
           onStart={startChase}
         />
       )}
-      {gameState.phase === "THE_CHASE" && !showResumeModal && (
+      {gameState.phase === "THE_CHASE" && !showResumeModal && gameState.config && (
         <TheChaseScreen
           config={gameState.config}
           bank={gameState.bank}
@@ -449,6 +567,15 @@ function App() {
           onEnd={endGame}
           onSaveSession={onSaveSession}
           restoredSession={sessionToRestore}
+          isPaused={showPauseModal}
+        />
+      )}
+      {gameState.phase === "LAST_CHANCE" && (
+        <LastChanceScreen
+          bank={gameState.bank}
+          lowerPct={gameState.config?.settings?.lastChanceLowerPct ?? appSettings?.defaultLastChanceLowerPct ?? 15}
+          upperPct={gameState.config?.settings?.lastChanceUpperPct ?? appSettings?.defaultLastChanceUpperPct ?? 25}
+          onRestart={restart}
         />
       )}
       {gameState.phase.startsWith("END_") && (
@@ -515,6 +642,12 @@ function MenuScreen({
     chaserRoundLength:
       config.settings?.chaserRoundLength ??
       appSettings.defaultChaserRoundLength,
+    lastChanceLowerPct:
+      config.settings?.lastChanceLowerPct ??
+      appSettings.defaultLastChanceLowerPct,
+    lastChanceUpperPct:
+      config.settings?.lastChanceUpperPct ??
+      appSettings.defaultLastChanceUpperPct,
   }));
   const [urlInput, setUrlInput] = useState(defaultUrl);
 
@@ -673,6 +806,48 @@ function MenuScreen({
             />
           </div>
 
+          <div
+            className="flex-row"
+            style={{ alignItems: "center", marginBottom: "0.75rem" }}
+          >
+            <label style={{ flex: 2 }}>Last Chance Lower Bound (%):</label>
+            <input
+              type="number"
+              className="input-text"
+              style={{ flex: 1, padding: "0.5rem", fontSize: "1.1rem" }}
+              value={customSettings.lastChanceLowerPct}
+              onChange={(e) =>
+                setCustomSettings((s) => ({
+                  ...s,
+                  lastChanceLowerPct:
+                    parseInt(e.target.value) ||
+                    appSettings.defaultLastChanceLowerPct,
+                }))
+              }
+            />
+          </div>
+
+          <div
+            className="flex-row"
+            style={{ alignItems: "center", marginBottom: "0.75rem" }}
+          >
+            <label style={{ flex: 2 }}>Last Chance Upper Bound (%):</label>
+            <input
+              type="number"
+              className="input-text"
+              style={{ flex: 1, padding: "0.5rem", fontSize: "1.1rem" }}
+              value={customSettings.lastChanceUpperPct}
+              onChange={(e) =>
+                setCustomSettings((s) => ({
+                  ...s,
+                  lastChanceUpperPct:
+                    parseInt(e.target.value) ||
+                    appSettings.defaultLastChanceUpperPct,
+                }))
+              }
+            />
+          </div>
+
           <div className="flex-row" style={{ alignItems: "center" }}>
             <label style={{ flex: 2 }}>Party Mode (Host grading):</label>
             <input
@@ -695,7 +870,10 @@ function MenuScreen({
         onClick={() => onStart(customSettings)}
         style={{ marginTop: "1rem" }}
       >
-        Start Game ➔
+        <span className="flex-row" style={{ justifyContent: "center", alignItems: "center" }}>
+          Start Game
+          <ArrowRight size={18} />
+        </span>
       </button>
     </div>
   );
@@ -706,11 +884,13 @@ function CashBuilderScreen({
   onComplete,
   onSaveSession,
   restoredSession,
+  isPaused = false,
 }: {
   config: GameConfig;
   onComplete: (bank: number) => void;
   onSaveSession: (snap: Omit<SessionSnapshot, "gameState">) => void;
   restoredSession: SessionSnapshot | null;
+  isPaused?: boolean;
 }) {
   const [qIndex, setQIndex] = useState(() => restoredSession?.qIndex ?? 0);
   const [bank, setBank] = useState(() => restoredSession?.bank ?? 0);
@@ -726,7 +906,7 @@ function CashBuilderScreen({
       setIsActive(false);
       setTimeout(() => onComplete(bank), 2000); // Wait 2s before transitioning
     },
-    isActive,
+    isActive && !isPaused,
   );
 
   // Save session continuously
@@ -847,13 +1027,19 @@ function CashBuilderScreen({
                         className="btn btn-success flex-1"
                         onClick={handleCorrect}
                       >
-                        ✅ Correct
+                        <span className="flex-row" style={{ justifyContent: "center", alignItems: "center" }}>
+                          <Check size={18} />
+                          Correct
+                        </span>
                       </button>
                       <button
                         className="btn btn-danger flex-1"
                         onClick={handleWrong}
                       >
-                        ❌ Wrong
+                        <span className="flex-row" style={{ justifyContent: "center", alignItems: "center" }}>
+                          <X size={18} />
+                          Wrong
+                        </span>
                       </button>
                     </div>
                   </>
@@ -910,7 +1096,10 @@ function CashBuilderScreen({
                           style={{ width: "100%", marginTop: "0.5rem" }}
                           onClick={handleCorrect}
                         >
-                          Next ➔
+                          <span className="flex-row" style={{ justifyContent: "center", alignItems: "center" }}>
+                            Next
+                            <ArrowRight size={18} />
+                          </span>
                         </button>
                       </div>
                     ) : (
@@ -1074,6 +1263,7 @@ function TheChaseScreen({
   onEnd,
   onSaveSession,
   restoredSession,
+  isPaused = false,
 }: {
   config: GameConfig;
   bank: number;
@@ -1082,6 +1272,7 @@ function TheChaseScreen({
   onEnd: (w: boolean) => void;
   onSaveSession: (snap: Omit<SessionSnapshot, "gameState">) => void;
   restoredSession: SessionSnapshot | null;
+  isPaused?: boolean;
 }) {
   const [qIndex, setQIndex] = useState(() => restoredSession?.qIndex ?? 0);
   const [selectedOpt, setSelectedOpt] = useState(() => restoredSession?.selectedOpt ?? "");
@@ -1144,7 +1335,7 @@ function TheChaseScreen({
     () => {
       if (onExpireRef.current) onExpireRef.current();
     },
-    !showResult && (isPlayerTurn || isPartyChaserTurn),
+    !isPaused && !showResult && (isPlayerTurn || isPartyChaserTurn),
   );
 
   // Save session continuously
@@ -1375,6 +1566,196 @@ function TheChaseScreen({
         </div>
       </div>
     </>
+  );
+}
+
+const ITEM_HEIGHT = 80;
+const VIEWPORT_HEIGHT = 400; // 5 visible items
+const WINNER_INDEX = 75;
+
+function buildStrip(bank: number, lowerPct: number, upperPct: number): { items: number[]; prize: number } {
+  const rand = (min: number, max: number) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
+  const cap = bank * (upperPct / 100); // absolute ceiling
+  const val = (lo: number, hi: number) =>
+    Math.round((cap * (lo + Math.random() * (hi - lo))) / 10) * 10;
+
+  const items: number[] = [];
+
+  // 0–44: grey common (0–25% of cap)
+  for (let i = 0; i < 45; i++) items.push(val(0, 0.25));
+  // 45–59: blue uncommon (25–50% of cap)
+  for (let i = 0; i < 15; i++) items.push(val(0.25, 0.5));
+  // 60–72: purple rare (50–75% of cap)
+  for (let i = 0; i < 13; i++) items.push(val(0.5, 0.75));
+  // 73–74: gold epic teasers (75–92% of cap)
+  for (let i = 0; i < 2; i++) items.push(val(0.75, 0.92));
+  // 75: winner (lowerPct–upperPct % of bank)
+  const winFrac = (lowerPct + Math.random() * (upperPct - lowerPct)) / 100;
+  const prize = Math.round((bank * winFrac) / 10) * 10;
+  items.push(prize); // index === WINNER_INDEX
+  // 76–89: filler after winner
+  for (let i = 0; i < 14; i++) {
+    if (i < 5) items.push(val(0, 0.25));
+    else items.push(val(0.25, 0.5));
+  }
+
+  const shuffle = (arr: number[], from: number, to: number) => {
+    for (let i = to; i > from; i--) {
+      const j = rand(from, i);
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  };
+  shuffle(items, 0, 44);
+  shuffle(items, 45, 59);
+  shuffle(items, 60, 72);
+
+  // Inject 6–9 high-value decoys (70–95% of bank) at random positions
+  // before the winner section so they flash past during the fast scroll.
+  const decoyCount = rand(6, 9);
+  const decoyVal = () =>
+    Math.round((bank * (0.70 + Math.random() * 0.25)) / 10) * 10;
+  for (let i = 0; i < decoyCount; i++) {
+    const pos = rand(0, 71); // anywhere before the teaser zone
+    items[pos] = decoyVal();
+  }
+
+  return { items, prize };
+}
+
+function rarityColor(value: number, cap: number): string {
+  const r = value / cap;
+  if (r >= 0.90) return "#ef4444"; // red — winner range
+  if (r >= 0.75) return "#f59e0b"; // gold
+  if (r >= 0.50) return "#8b5cf6"; // purple
+  if (r >= 0.25) return "#3b82f6"; // blue
+  return "#64748b";                // grey
+}
+
+function LastChanceScreen({
+  bank,
+  lowerPct,
+  upperPct,
+  onRestart,
+}: {
+  bank: number;
+  lowerPct: number;
+  upperPct: number;
+  onRestart: () => void;
+}) {
+  const [spinPhase, setSpinPhase] = useState<"ready" | "spinning" | "done">("ready");
+  const [stripData, setStripData] = useState(() => buildStrip(bank, lowerPct, upperPct));
+  const cap = bank * (upperPct / 100);
+  const [translateY, setTranslateY] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+
+  const finalY =
+    -(WINNER_INDEX * ITEM_HEIGHT) + (VIEWPORT_HEIGHT / 2 - ITEM_HEIGHT / 2);
+
+  const doSpin = (data: ReturnType<typeof buildStrip>) => {
+    setStripData(data);
+    setSpinPhase("spinning");
+    setTranslateY(0);
+    setTransitioning(false);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setTranslateY(finalY);
+        setTransitioning(true);
+      });
+    });
+    setTimeout(() => setSpinPhase("done"), 5500);
+  };
+
+  const spin = () => {
+    if (spinPhase !== "ready") return;
+    doSpin(stripData);
+  };
+
+  const spinAgain = () => doSpin(buildStrip(bank, lowerPct, upperPct));
+
+  return (
+    <div className="glass-panel text-center">
+      <h1
+        style={{
+          background: "none",
+          WebkitTextFillColor: "var(--danger)",
+          filter: "drop-shadow(0 0 12px rgba(239,68,68,0.6))",
+        }}
+      >
+        Last Chance!
+      </h1>
+      <p style={{ fontSize: "1.1rem" }}>
+        The chaser caught you — spin for one final shot.
+      </p>
+
+      <div className="roulette-viewport">
+        <div
+          className="roulette-strip"
+          style={{
+            transform: `translateY(${translateY}px)`,
+            transition: transitioning
+              ? "transform 5s cubic-bezier(0.05, 0, 0.15, 1)"
+              : "none",
+          }}
+        >
+          {stripData.items.map((val, i) => {
+            const isWinner = i === WINNER_INDEX && spinPhase === "done";
+            return (
+              <div
+                key={i}
+                className={`roulette-item${isWinner ? " winner-glow" : ""}`}
+                style={{ color: rarityColor(val, cap) }}
+              >
+                {eur.format(val)}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {spinPhase === "ready" && (
+        <button
+          className="btn btn-primary"
+          style={{ width: "100%", fontSize: "1.25rem", padding: "1rem" }}
+          onClick={spin}
+        >
+          Spin
+        </button>
+      )}
+
+      {spinPhase === "done" && (
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}>
+          <p style={{ color: "var(--text-muted)", fontSize: "1rem" }}>
+            Last chance prize
+          </p>
+          <h2
+            style={{
+              fontSize: "3rem",
+              color: "#ef4444",
+              filter: "drop-shadow(0 0 12px rgba(239,68,68,0.5))",
+            }}
+          >
+            {eur.format(stripData.prize)}
+          </h2>
+          <div style={{ display: "flex", gap: "1rem", width: "100%" }}>
+            <button
+              className="btn btn-primary"
+              style={{ flex: 1 }}
+              onClick={spinAgain}
+            >
+              Spin Again
+            </button>
+            <button
+              className="btn btn-primary"
+              style={{ flex: 1 }}
+              onClick={onRestart}
+            >
+              Play Again
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

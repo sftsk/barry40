@@ -4,5 +4,7 @@
   "defaultPartyMode": true,
   "defaultChaserAccuracyPercentage": 75,
   "defaultCashPerCorrectAnswer": 10,
-  "defaultChaserRoundLength": 10
+  "defaultChaserRoundLength": 10,
+  "defaultLastChanceLowerPct": 15,
+  "defaultLastChanceUpperPct": 25
 }
