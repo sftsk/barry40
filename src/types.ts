@@ -7,6 +7,8 @@ export interface AppSettings {
   defaultChaserRoundLength: number;
   defaultLastChanceLowerPct: number;
   defaultLastChanceUpperPct: number;
+  defaultHighOfferMultiplier: number;
+  defaultLowOfferMultiplier: number;
 }
 
 export interface GameSettings {
@@ -18,6 +20,8 @@ export interface GameSettings {
   chaserRoundLength?: number;
   lastChanceLowerPct?: number;
   lastChanceUpperPct?: number;
+  highOfferMultiplier?: number;
+  lowOfferMultiplier?: number;
 }
 
 export interface CashBuilderQuestion {

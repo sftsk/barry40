@@ -648,6 +648,12 @@ function MenuScreen({
     lastChanceUpperPct:
       config.settings?.lastChanceUpperPct ??
       appSettings.defaultLastChanceUpperPct,
+    highOfferMultiplier:
+      config.settings?.highOfferMultiplier ??
+      appSettings.defaultHighOfferMultiplier,
+    lowOfferMultiplier:
+      config.settings?.lowOfferMultiplier ??
+      appSettings.defaultLowOfferMultiplier,
   }));
   const [urlInput, setUrlInput] = useState(defaultUrl);
 
@@ -801,6 +807,53 @@ function MenuScreen({
                   chaserRoundLength:
                     parseInt(e.target.value) ||
                     appSettings.defaultChaserRoundLength,
+                }))
+              }
+            />
+          </div>
+
+          <div
+            className="flex-row"
+            style={{ alignItems: "center", marginBottom: "0.75rem" }}
+          >
+            <label style={{ flex: 2 }}>High Offer Multiplier:</label>
+            <input
+              type="number"
+              className="input-text"
+              style={{ flex: 1, padding: "0.5rem", fontSize: "1.1rem" }}
+              step="0.1"
+              min={0}
+              value={customSettings.highOfferMultiplier}
+              onChange={(e) =>
+                setCustomSettings((s) => ({
+                  ...s,
+                  highOfferMultiplier:
+                    parseFloat(e.target.value) ||
+                    appSettings.defaultHighOfferMultiplier,
+                }))
+              }
+            />
+          </div>
+
+          <div
+            className="flex-row"
+            style={{ alignItems: "center", marginBottom: "0.75rem" }}
+          >
+            <label style={{ flex: 2 }}>Low Offer Multiplier:</label>
+            <input
+              type="number"
+              className="input-text"
+              style={{ flex: 1, padding: "0.5rem", fontSize: "1.1rem" }}
+              step="0.05"
+              min={0}
+              max={1}
+              value={customSettings.lowOfferMultiplier}
+              onChange={(e) =>
+                setCustomSettings((s) => ({
+                  ...s,
+                  lowOfferMultiplier:
+                    parseFloat(e.target.value) ||
+                    appSettings.defaultLowOfferMultiplier,
                 }))
               }
             />
@@ -1161,10 +1214,13 @@ function ChaseSetupScreen({
   const defaultPlayerPos = Math.max(2, Math.floor(roundLength / 3));
   const baseAccuracy = config.settings.chaserAccuracyPercentage;
 
+  const highMultiplier = config.settings.highOfferMultiplier ?? 3;
+  const lowMultiplier = config.settings.lowOfferMultiplier ?? 0.4;
+
   const offers = [
     {
       label: "High",
-      bank: bank * 3,
+      bank: bank * highMultiplier,
       playerPos: Math.max(1, defaultPlayerPos - 1),
       activeAccuracy: Math.min(100, baseAccuracy + 5),
       color: "var(--danger)",
@@ -1179,7 +1235,7 @@ function ChaseSetupScreen({
     },
     {
       label: "Low",
-      bank: Math.max(1, Math.floor(bank * 0.4)),
+      bank: Math.max(1, Math.floor(bank * lowMultiplier)),
       playerPos: Math.min(roundLength - 1, defaultPlayerPos + 1),
       activeAccuracy: Math.max(0, baseAccuracy - 5),
       color: "var(--success)",

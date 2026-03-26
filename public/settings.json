@@ -6,5 +6,7 @@
   "defaultCashPerCorrectAnswer": 10,
   "defaultChaserRoundLength": 10,
   "defaultLastChanceLowerPct": 15,
-  "defaultLastChanceUpperPct": 25
+  "defaultLastChanceUpperPct": 25,
+  "defaultHighOfferMultiplier": 2.2,
+  "defaultLowOfferMultiplier": 0.4
 }
